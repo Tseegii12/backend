@@ -1,4 +1,4 @@
-const pool = require("../../databasePool");
+const pool = require("../../databasePool")
 
 class QueryIrtsTable {
   // 1
@@ -20,12 +20,12 @@ class QueryIrtsTable {
           [],
           (error, response) => {
             if (error) {
-              return reject(error);
+              return reject(error)
             }
-            resolve(response.rows);
+            resolve(response.rows)
           }
-        );
-      });
+        )
+      })
     } else {
       return new Promise((resolve, reject) => {
         pool.query(
@@ -43,12 +43,12 @@ class QueryIrtsTable {
           [date1, date2],
           (error, response) => {
             if (error) {
-              return reject(error);
+              return reject(error)
             }
-            resolve(response.rows);
+            resolve(response.rows)
           }
-        );
-      });
+        )
+      })
     }
   }
   static get1CountTsalin({ date1, date2 }) {
@@ -68,12 +68,12 @@ class QueryIrtsTable {
           [],
           (error, response) => {
             if (error) {
-              return reject(error);
+              return reject(error)
             }
-            resolve(response.rows[0]);
+            resolve(response.rows[0])
           }
-        );
-      });
+        )
+      })
     } else {
       return new Promise((resolve, reject) => {
         pool.query(
@@ -90,12 +90,12 @@ class QueryIrtsTable {
           [date1, date2],
           (error, response) => {
             if (error) {
-              return reject(error);
+              return reject(error)
             }
-            resolve(response.rows[0]);
+            resolve(response.rows[0])
           }
-        );
-      });
+        )
+      })
     }
   }
   static get1CountAjilchin({ date1, date2 }) {
@@ -115,12 +115,12 @@ class QueryIrtsTable {
           [],
           (error, response) => {
             if (error) {
-              return reject(error);
+              return reject(error)
             }
-            resolve(response.rows[0]);
+            resolve(response.rows[0])
           }
-        );
-      });
+        )
+      })
     } else {
       return new Promise((resolve, reject) => {
         pool.query(
@@ -137,12 +137,12 @@ class QueryIrtsTable {
           [date1, date2],
           (error, response) => {
             if (error) {
-              return reject(error);
+              return reject(error)
             }
-            resolve(response.rows[0]);
+            resolve(response.rows[0])
           }
-        );
-      });
+        )
+      })
     }
   }
   //   2
@@ -187,12 +187,12 @@ class QueryIrtsTable {
           [date1, date2, pj_id],
           (error, response) => {
             if (error) {
-              return reject(error);
+              return reject(error)
             }
-            resolve(response.rows);
+            resolve(response.rows)
           }
-        );
-      });
+        )
+      })
     } else {
       return new Promise((resolve, reject) => {
         pool.query(
@@ -232,12 +232,12 @@ class QueryIrtsTable {
           [],
           (error, response) => {
             if (error) {
-              return reject(error);
+              return reject(error)
             }
-            resolve(response.rows);
+            resolve(response.rows)
           }
-        );
-      });
+        )
+      })
     }
   }
   static get2TotalAjilchin({ date1, date2, pj_id }) {
@@ -257,12 +257,12 @@ class QueryIrtsTable {
           [date1, date2, pj_id],
           (error, response) => {
             if (error) {
-              return reject(error);
+              return reject(error)
             }
-            resolve(response.rows[0]);
+            resolve(response.rows[0])
           }
-        );
-      });
+        )
+      })
     } else {
       return new Promise((resolve, reject) => {
         pool.query(
@@ -278,12 +278,12 @@ class QueryIrtsTable {
           [],
           (error, response) => {
             if (error) {
-              return reject(error);
+              return reject(error)
             }
-            resolve(response.rows[0]);
+            resolve(response.rows[0])
           }
-        );
-      });
+        )
+      })
     }
   }
   static get2TotalAjilajBga({ date1, date2, pj_id }) {
@@ -303,12 +303,12 @@ class QueryIrtsTable {
           [date1, date2, pj_id],
           (error, response) => {
             if (error) {
-              return reject(error);
+              return reject(error)
             }
-            resolve(response.rows[0]);
+            resolve(response.rows[0])
           }
-        );
-      });
+        )
+      })
     } else {
       return new Promise((resolve, reject) => {
         pool.query(
@@ -324,12 +324,12 @@ class QueryIrtsTable {
           [],
           (error, response) => {
             if (error) {
-              return reject(error);
+              return reject(error)
             }
-            resolve(response.rows[0]);
+            resolve(response.rows[0])
           }
-        );
-      });
+        )
+      })
     }
   }
   static get2TotalTsalin({ date1, date2, pj_id }) {
@@ -349,12 +349,12 @@ class QueryIrtsTable {
           [date1, date2, pj_id],
           (error, response) => {
             if (error) {
-              return reject(error);
+              return reject(error)
             }
-            resolve(response.rows[0]);
+            resolve(response.rows[0])
           }
-        );
-      });
+        )
+      })
     } else {
       return new Promise((resolve, reject) => {
         pool.query(
@@ -371,22 +371,17 @@ class QueryIrtsTable {
           [],
           (error, response) => {
             if (error) {
-              return reject(error);
+              return reject(error)
             }
-            resolve(response.rows[0]);
+            resolve(response.rows[0])
           }
-        );
-      });
+        )
+      })
     }
   }
   // 3
   static get3({ date1, date2, pj_id, manager_id }) {
-    if (
-      date1 !== null &&
-      date2 !== null &&
-      pj_id !== null &&
-      manager_id !== null
-    ) {
+    if (date1 !== null && date2 !== null && pj_id !== null && manager_id !== null) {
       return new Promise((resolve, reject) => {
         pool.query(
           `SELECT table1.huruu_hee, table1.ner, table1.alban_tushaal, table2.count AS ajillasan_udur, table2.sum AS tsalin_zardal FROM (
@@ -412,12 +407,12 @@ class QueryIrtsTable {
           [date1, date2, pj_id, manager_id],
           (error, response) => {
             if (error) {
-              return reject(error);
+              return reject(error)
             }
-            resolve(response.rows);
+            resolve(response.rows)
           }
-        );
-      });
+        )
+      })
     } else {
       return new Promise((resolve, reject) => {
         pool.query(
@@ -443,21 +438,16 @@ class QueryIrtsTable {
           [],
           (error, response) => {
             if (error) {
-              return reject(error);
+              return reject(error)
             }
-            resolve(response.rows);
+            resolve(response.rows)
           }
-        );
-      });
+        )
+      })
     }
   }
   static get3TotalTsalin({ date1, date2, pj_id, manager_id }) {
-    if (
-      date1 !== null &&
-      date2 !== null &&
-      pj_id !== null &&
-      manager_id !== null
-    ) {
+    if (date1 !== null && date2 !== null && pj_id !== null && manager_id !== null) {
       return new Promise((resolve, reject) => {
         pool.query(
           `SELECT SUM(irts.tsalin) FROM irts
@@ -474,12 +464,12 @@ class QueryIrtsTable {
           [date1, date2, pj_id, manager_id],
           (error, response) => {
             if (error) {
-              return reject(error);
+              return reject(error)
             }
-            resolve(response.rows[0]);
+            resolve(response.rows[0])
           }
-        );
-      });
+        )
+      })
     } else {
       return new Promise((resolve, reject) => {
         pool.query(
@@ -496,12 +486,12 @@ class QueryIrtsTable {
           [],
           (error, response) => {
             if (error) {
-              return reject(error);
+              return reject(error)
             }
-            resolve(response.rows[0]);
+            resolve(response.rows[0])
           }
-        );
-      });
+        )
+      })
     }
   }
   // 4
@@ -521,12 +511,12 @@ class QueryIrtsTable {
         [in_time, pj_id],
         (error, response) => {
           if (error) {
-            return reject(error);
+            return reject(error)
           }
-          resolve(response.rows);
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static get4Total({ in_time, pj_id }) {
     return new Promise((resolve, reject) => {
@@ -544,18 +534,18 @@ class QueryIrtsTable {
         [in_time, pj_id],
         (error, response) => {
           if (error) {
-            return reject(error);
+            return reject(error)
           }
-          resolve(response.rows);
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   // 5
   static get5Honoson({ date, pj_id }) {
-    let dateSampleStart = date + " 11:00 PM";
-    let dateSampleFinish = date + " 11:59 PM";
-    console.log(dateSampleStart, dateSampleFinish, pj_id);
+    let dateSampleStart = date + " 11:00 PM"
+    let dateSampleFinish = date + " 11:59 PM"
+    console.log(dateSampleStart, dateSampleFinish, pj_id)
     return new Promise((resolve, reject) => {
       pool.query(
         `SELECT irts.*, irts_tuluv.name as tuluv_name, workers.project_id, workers.manager_name, workers.ner,
@@ -573,15 +563,15 @@ class QueryIrtsTable {
         [date, dateSampleStart, dateSampleFinish, pj_id],
         (error, response) => {
           if (error) {
-            return reject(error);
+            return reject(error)
           }
-          resolve(response.rows);
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static get5Iluu({ date, dateStart, pj_id }) {
-    let dateSampleFinish = date + " 10:59 PM";
+    let dateSampleFinish = date + " 10:59 PM"
     return new Promise((resolve, reject) => {
       pool.query(
         `SELECT irts.*, irts_tuluv.name as tuluv_name, workers.project_id, workers.manager_name, workers.ner,
@@ -599,13 +589,13 @@ ORDER BY out_time DESC`,
         [date, dateStart, dateSampleFinish, pj_id],
         (error, response) => {
           if (error) {
-            return reject(error);
+            return reject(error)
           }
-          resolve(response.rows);
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
 }
 
-module.exports = QueryIrtsTable;
+module.exports = QueryIrtsTable

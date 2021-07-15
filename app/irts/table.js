@@ -1,20 +1,20 @@
-const pool = require("../../databasePool");
-var format = require("pg-format");
+const pool = require("../../databasePool")
+var format = require("pg-format")
 
 class IrtsTable {
   //admin
   static insert({ worker_id, tsalin, tuluv_id, data }) {
     // console.log("1", data);
-    let dataValue = [];
+    let dataValue = []
     data.forEach((item) => {
-      let innerData = [];
-      innerData.push(item.id);
+      let innerData = []
+      innerData.push(item.id)
       // innerData.push(`current_date`);
-      innerData.push(item.udur_tsalin);
-      innerData.push(item.current_tuluv_id);
-      innerData.push(item.huruu_hee);
-      dataValue.push(innerData);
-    });
+      innerData.push(item.udur_tsalin)
+      innerData.push(item.current_tuluv_id)
+      innerData.push(item.huruu_hee)
+      dataValue.push(innerData)
+    })
     // console.log("2", dataValue);
     return new Promise((resolve, reject) => {
       // resolve({ message: "test" });
@@ -27,23 +27,23 @@ class IrtsTable {
         [],
         (error, response) => {
           if (error) {
-            return reject(error);
+            return reject(error)
           }
-          resolve({ message: "success" });
+          resolve({ message: "success" })
         }
-      );
-    });
+      )
+    })
   }
 
   static deleteIrtsTotal() {
     return new Promise((resolve, reject) => {
       pool.query(`DELETE FROM irts_total`, [], (error, response) => {
         if (error) {
-          return reject(error);
+          return reject(error)
         }
-        resolve({ message: "success" });
-      });
-    });
+        resolve({ message: "success" })
+      })
+    })
   }
 
   static updateIrts() {
@@ -54,12 +54,12 @@ class IrtsTable {
         [],
         (error, response) => {
           if (error) {
-            return reject(error);
+            return reject(error)
           }
-          resolve({ message: "irts updated" });
+          resolve({ message: "irts updated" })
         }
-      );
-    });
+      )
+    })
   }
 
   static insertIrtsTotal({
@@ -74,34 +74,26 @@ class IrtsTable {
     return new Promise((resolve, reject) => {
       pool.query(
         `INSERT INTO irts_total(manager_id,manager_name,pj_name,irsen,uvchtei,tasalsan,chuluutei) VALUES($1,$2,$3,$4,$5,$6,$7)`,
-        [
-          manager_id,
-          manager_name,
-          pj_name,
-          irsen,
-          uvchtei,
-          tasalsan,
-          chuluutei,
-        ],
+        [manager_id, manager_name, pj_name, irsen, uvchtei, tasalsan, chuluutei],
         (error, response) => {
           if (error) {
-            return reject(error);
+            return reject(error)
           }
-          resolve({ message: "success" });
+          resolve({ message: "success" })
         }
-      );
-    });
+      )
+    })
   }
 
   static getIrtsTotal() {
     return new Promise((resolve, reject) => {
       pool.query(`SELECT * FROM irts_total`, [], (error, response) => {
         if (error) {
-          return reject(error);
+          return reject(error)
         }
-        resolve(response.rows);
-      });
-    });
+        resolve(response.rows)
+      })
+    })
   }
 
   static getAll() {
@@ -120,12 +112,12 @@ class IrtsTable {
         [],
         (error, response) => {
           if (error) {
-            return reject(error);
+            return reject(error)
           }
-          resolve(response.rows);
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
 
   static getAllDistinct() {
@@ -145,12 +137,12 @@ class IrtsTable {
         [],
         (error, response) => {
           if (error) {
-            return reject(error);
+            return reject(error)
           }
-          resolve(response.rows);
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
 
   static getAllCount() {
@@ -167,12 +159,12 @@ class IrtsTable {
         [],
         (error, response) => {
           if (error) {
-            return reject(error);
+            return reject(error)
           }
-          resolve(response.rows);
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
 
   static getSpecial() {
@@ -211,12 +203,12 @@ class IrtsTable {
         [],
         (error, response) => {
           if (error) {
-            return reject(error);
+            return reject(error)
           }
-          resolve(response.rows);
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
 
   static getAllCountDistinct(manager_id) {
@@ -238,12 +230,12 @@ class IrtsTable {
         [manager_id],
         (error, response) => {
           if (error) {
-            return reject(error);
+            return reject(error)
           }
-          resolve(response.rows);
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
 
   static getAllCountDistinctDate(manager_id) {
@@ -262,12 +254,12 @@ class IrtsTable {
         [manager_id],
         (error, response) => {
           if (error) {
-            return reject(error);
+            return reject(error)
           }
-          resolve(response.rows);
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
 
   static getAllCount123() {
@@ -285,19 +277,19 @@ class IrtsTable {
         [],
         (error, response) => {
           if (error) {
-            return reject(error);
+            return reject(error)
           }
-          resolve(response.rows);
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
 
   static getBySearch({ dateStart, dateFinish, pj_id, manager_id }) {
-    console.log(dateStart, dateFinish, pj_id, manager_id);
+    console.log(dateStart, dateFinish, pj_id, manager_id)
     if (pj_id !== null && manager_id === null) {
       if (dateStart === null && dateFinish === null) {
-        console.log("tusluur haih udurgui");
+        console.log("tusluur haih udurgui")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT irts.*, workers.ovog, workers.ner, workers.utas_dugaar, workers.alban_tushaal, workers.huruu_hee,
@@ -314,14 +306,14 @@ class IrtsTable {
             [pj_id],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       } else {
-        console.log("tusluur haih udurtei");
+        console.log("tusluur haih udurtei")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT irts.*, workers.ovog, workers.ner, workers.utas_dugaar, workers.alban_tushaal, workers.huruu_hee,
@@ -339,16 +331,16 @@ class IrtsTable {
             [dateStart, dateFinish, pj_id],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       }
     } else if (manager_id !== null && pj_id === null) {
       if (dateStart === null && dateFinish === null) {
-        console.log("managereer haih udurgui");
+        console.log("managereer haih udurgui")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT irts.*, workers.ovog, workers.ner, workers.utas_dugaar, workers.alban_tushaal, workers.huruu_hee,
@@ -366,14 +358,14 @@ class IrtsTable {
             [manager_id],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       } else {
-        console.log("managereer haih udurtei");
+        console.log("managereer haih udurtei")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT irts.*, workers.ovog, workers.ner, workers.utas_dugaar, workers.alban_tushaal, workers.huruu_hee,
@@ -392,16 +384,16 @@ class IrtsTable {
             [dateStart, dateFinish, manager_id],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       }
     } else if (manager_id && pj_id !== null) {
       if (dateStart === null && dateFinish === null) {
-        console.log("bugdengeer haih udurgui");
+        console.log("bugdengeer haih udurgui")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT irts.*, workers.ovog, workers.ner, workers.utas_dugaar, workers.alban_tushaal, workers.huruu_hee,
@@ -420,14 +412,14 @@ class IrtsTable {
             [pj_id, manager_id],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       } else {
-        console.log("bugdengeer haih udurtei");
+        console.log("bugdengeer haih udurtei")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT irts.*, workers.ovog, workers.ner, workers.utas_dugaar, workers.alban_tushaal, workers.huruu_hee,
@@ -447,17 +439,17 @@ class IrtsTable {
             [dateStart, dateFinish, pj_id, manager_id],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       }
     } else if (manager_id && pj_id === null) {
-      console.log("A");
+      console.log("A")
       if (dateStart && dateFinish !== null) {
-        console.log("objectgui haih udurtei");
+        console.log("objectgui haih udurtei")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT irts.*, workers.ovog, workers.ner, workers.utas_dugaar, workers.alban_tushaal, workers.huruu_hee,
@@ -474,12 +466,12 @@ class IrtsTable {
             [dateStart, dateFinish],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       }
     }
   }
@@ -487,7 +479,7 @@ class IrtsTable {
   static getBySearchTuluv({ dateStart, dateFinish, pj_id, manager_id }) {
     if (pj_id !== null && manager_id === null) {
       if (dateStart === null && dateFinish === null) {
-        console.log("tusluur haih udurgui");
+        console.log("tusluur haih udurgui")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT DISTINCT ON (irts.tuluv_id) irts.tuluv_id, irts_tuluv.name AS tuluv_ner FROM irts
@@ -502,14 +494,14 @@ class IrtsTable {
             [pj_id],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       } else {
-        console.log("tusluur haih udurtei");
+        console.log("tusluur haih udurtei")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT DISTINCT ON (irts.tuluv_id) irts.tuluv_id, irts_tuluv.name AS tuluv_ner FROM irts
@@ -526,16 +518,16 @@ class IrtsTable {
             [dateStart, dateFinish, pj_id],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       }
     } else if (manager_id !== null && pj_id === null) {
       if (dateStart === null && dateFinish === null) {
-        console.log("managereer haih udurgui");
+        console.log("managereer haih udurgui")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT DISTINCT ON (irts.tuluv_id) irts.tuluv_id, irts_tuluv.name AS tuluv_ner FROM irts
@@ -551,14 +543,14 @@ class IrtsTable {
             [manager_id],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       } else {
-        console.log("managereer haih udurtei");
+        console.log("managereer haih udurtei")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT DISTINCT ON (irts.tuluv_id) irts.tuluv_id, irts_tuluv.name AS tuluv_ner FROM irts
@@ -575,16 +567,16 @@ class IrtsTable {
             [dateStart, dateFinish, manager_id],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       }
     } else if (manager_id && pj_id !== null) {
       if (dateStart === null && dateFinish === null) {
-        console.log("bugdengeer haih udurgui");
+        console.log("bugdengeer haih udurgui")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT DISTINCT ON (irts.tuluv_id) irts.tuluv_id, irts_tuluv.name AS tuluv_ner FROM irts
@@ -601,14 +593,14 @@ class IrtsTable {
             [pj_id, manager_id],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       } else {
-        console.log("bugdengeer haih udurtei");
+        console.log("bugdengeer haih udurtei")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT DISTINCT ON (irts.tuluv_id) irts.tuluv_id, irts_tuluv.name AS tuluv_ner FROM irts
@@ -626,16 +618,16 @@ class IrtsTable {
             [dateStart, dateFinish, pj_id, manager_id],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       }
     } else if (manager_id && pj_id === null) {
       if (dateStart && dateFinish !== null) {
-        console.log("objectgui haih udurtei");
+        console.log("objectgui haih udurtei")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT DISTINCT ON (irts.tuluv_id) irts.tuluv_id, irts_tuluv.name AS tuluv_ner FROM irts
@@ -650,12 +642,12 @@ class IrtsTable {
             [dateStart, dateFinish],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       }
     }
   }
@@ -663,7 +655,7 @@ class IrtsTable {
   static getBySearchCount({ dateStart, dateFinish, pj_id, manager_id }) {
     if (pj_id !== null && manager_id === null) {
       if (dateStart === null && dateFinish === null) {
-        console.log("tusluur haih udurgui");
+        console.log("tusluur haih udurgui")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT count(irts.tuluv_id), irts_tuluv.name AS tuluv_ner FROM irts
@@ -679,14 +671,14 @@ class IrtsTable {
             [pj_id],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       } else {
-        console.log("tusluur haih udurtei");
+        console.log("tusluur haih udurtei")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT count(irts.tuluv_id), irts_tuluv.name AS tuluv_ner FROM irts
@@ -704,16 +696,16 @@ class IrtsTable {
             [dateStart, dateFinish, pj_id],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       }
     } else if (manager_id !== null && pj_id === null) {
       if (dateStart === null && dateFinish === null) {
-        console.log("managereer haih udurgui");
+        console.log("managereer haih udurgui")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT count(irts.tuluv_id), irts_tuluv.name AS tuluv_ner FROM irts
@@ -729,14 +721,14 @@ class IrtsTable {
             [manager_id],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       } else {
-        console.log("managereer haih udurtei");
+        console.log("managereer haih udurtei")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT count(irts.tuluv_id), irts_tuluv.name AS tuluv_ner FROM irts
@@ -754,16 +746,16 @@ class IrtsTable {
             [dateStart, dateFinish, manager_id],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       }
     } else if (manager_id && pj_id !== null) {
       if (dateStart === null && dateFinish === null) {
-        console.log("bugdengeer haih udurgui");
+        console.log("bugdengeer haih udurgui")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT count(irts.tuluv_id), irts_tuluv.name AS tuluv_ner FROM irts
@@ -781,14 +773,14 @@ class IrtsTable {
             [pj_id, manager_id],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       } else {
-        console.log("bugdengeer haih udurtei");
+        console.log("bugdengeer haih udurtei")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT count(irts.tuluv_id), irts_tuluv.name AS tuluv_ner FROM irts
@@ -807,16 +799,16 @@ class IrtsTable {
             [dateStart, dateFinish, pj_id, manager_id],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       }
     } else if (manager_id && pj_id === null) {
       if (dateStart && dateFinish !== null) {
-        console.log("objectgui haih udurtei");
+        console.log("objectgui haih udurtei")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT count(irts.tuluv_id), irts_tuluv.name AS tuluv_ner FROM irts
@@ -832,12 +824,12 @@ class IrtsTable {
             [dateStart, dateFinish],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       }
     }
   }
@@ -845,7 +837,7 @@ class IrtsTable {
   static getBySearchCountAll({ dateStart, dateFinish, pj_id, manager_id }) {
     if (pj_id !== null && manager_id === null) {
       if (dateStart === null && dateFinish === null) {
-        console.log("tusluur haih udurgui");
+        console.log("tusluur haih udurgui")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT count(*) FROM irts
@@ -860,14 +852,14 @@ class IrtsTable {
             [pj_id],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       } else {
-        console.log("tusluur haih udurtei");
+        console.log("tusluur haih udurtei")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT count(*) FROM irts
@@ -884,16 +876,16 @@ class IrtsTable {
             [dateStart, dateFinish, pj_id],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       }
     } else if (manager_id !== null && pj_id === null) {
       if (dateStart === null && dateFinish === null) {
-        console.log("managereer haih udurgui");
+        console.log("managereer haih udurgui")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT count(*) FROM irts
@@ -908,14 +900,14 @@ class IrtsTable {
             [manager_id],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       } else {
-        console.log("managereer haih udurtei");
+        console.log("managereer haih udurtei")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT count(*) FROM irts
@@ -932,16 +924,16 @@ class IrtsTable {
             [dateStart, dateFinish, manager_id],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       }
     } else if (manager_id && pj_id !== null) {
       if (dateStart === null && dateFinish === null) {
-        console.log("bugdengeer haih udurgui");
+        console.log("bugdengeer haih udurgui")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT count(*) FROM irts
@@ -958,14 +950,14 @@ class IrtsTable {
             [pj_id, manager_id],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       } else {
-        console.log("bugdengeer haih udurtei");
+        console.log("bugdengeer haih udurtei")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT count(*) FROM irts
@@ -983,16 +975,16 @@ class IrtsTable {
             [dateStart, dateFinish, pj_id, manager_id],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       }
     } else if (manager_id && pj_id === null) {
       if (dateStart && dateFinish !== null) {
-        console.log("objectgui haih udurtei");
+        console.log("objectgui haih udurtei")
         return new Promise((resolve, reject) => {
           pool.query(
             `SELECT count(*) FROM irts
@@ -1007,12 +999,12 @@ class IrtsTable {
             [dateStart, dateFinish],
             (error, response) => {
               if (error) {
-                return reject(error);
+                return reject(error)
               }
-              resolve(response.rows);
+              resolve(response.rows)
             }
-          );
-        });
+          )
+        })
       }
     }
   }
@@ -1030,14 +1022,14 @@ class IrtsTable {
           [manager_id],
           (error, response) => {
             if (error) {
-              return reject(error);
+              return reject(error)
             }
-            resolve(response.rows);
+            resolve(response.rows)
           }
-        );
-      });
+        )
+      })
     } else {
-      console.log("?", dateFinish, dateStart);
+      console.log("?", dateFinish, dateStart)
       return new Promise((resolve, reject) => {
         pool.query(
           `SELECT irts.*, worker.ovog, worker.ner, worker.utas_dugaar, worker.alban_tushaal,
@@ -1049,12 +1041,12 @@ class IrtsTable {
           [manager_id, dateStart, dateFinish],
           (error, response) => {
             if (error) {
-              return reject(error);
+              return reject(error)
             }
-            resolve(response.rows);
+            resolve(response.rows)
           }
-        );
-      });
+        )
+      })
     }
   }
 
@@ -1070,25 +1062,25 @@ class IrtsTable {
         [manager_id],
         (error, response) => {
           if (error) {
-            return reject(error);
+            return reject(error)
           }
-          resolve(response.rows);
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
 
   static update({ tuluv_id, id, data }) {
     return new Promise((resolve, reject) => {
       // console.log(data);
       // resolve({ message: "success" });
-      let dataValue = [];
+      let dataValue = []
       data.forEach((item) => {
-        let innerData = [];
-        innerData.push(item.id);
-        innerData.push(item.tuluv_id);
-        dataValue.push(innerData);
-      });
+        let innerData = []
+        innerData.push(item.id)
+        innerData.push(item.tuluv_id)
+        dataValue.push(innerData)
+      })
       // console.log(dataValue);
       // data.forEach((item) => {
       //   let tuluv_id = item.tuluv_id;
@@ -1112,13 +1104,13 @@ class IrtsTable {
         [],
         (error, response) => {
           if (error) {
-            return reject(error);
+            return reject(error)
           }
-          resolve({ message: "success" });
+          resolve({ message: "success" })
         }
-      );
-    });
+      )
+    })
   }
 }
 
-module.exports = IrtsTable;
+module.exports = IrtsTable

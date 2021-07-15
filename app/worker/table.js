@@ -1,4 +1,4 @@
-const pool = require("../../databasePool");
+const pool = require("../../databasePool")
 
 class WorkerTable {
   //admin
@@ -37,12 +37,12 @@ class WorkerTable {
         ],
         (error, response) => {
           if (error) {
-            return reject(error);
+            return reject(error)
           }
-          resolve({ message: "success" });
+          resolve({ message: "success" })
         }
-      );
-    });
+      )
+    })
   }
 
   static getAll() {
@@ -58,12 +58,12 @@ class WorkerTable {
         [],
         (error, response) => {
           if (error) {
-            return reject(error);
+            return reject(error)
           }
-          resolve(response.rows);
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static getAllByManager({ manager_id }) {
     return new Promise((resolve, reject) => {
@@ -79,26 +79,22 @@ class WorkerTable {
         [manager_id],
         (error, response) => {
           if (error) {
-            return reject(error);
+            return reject(error)
           }
-          resolve(response.rows);
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static delete({ id }) {
     return new Promise((resolve, reject) => {
-      pool.query(
-        `DELETE FROM worker WHERE id = $1`,
-        [id],
-        (error, response) => {
-          if (error) {
-            return reject(error);
-          }
-          resolve({ message: "success" });
+      pool.query(`DELETE FROM worker WHERE id = $1`, [id], (error, response) => {
+        if (error) {
+          return reject(error)
         }
-      );
-    });
+        resolve({ message: "success" })
+      })
+    })
   }
   static update({
     ovog,
@@ -117,7 +113,7 @@ class WorkerTable {
     huruu_code,
   }) {
     if (tuluv_id === 5) {
-      console.log("InActive");
+      console.log("InActive")
       return new Promise((resolve, reject) => {
         pool.query(
           `UPDATE worker SET ovog = $1,
@@ -153,12 +149,12 @@ class WorkerTable {
           ],
           (error, response) => {
             if (error) {
-              return reject(error);
+              return reject(error)
             }
-            resolve({ message: "success" });
+            resolve({ message: "success" })
           }
-        );
-      });
+        )
+      })
     } else if (tuluv_id === 1) {
       return new Promise((resolve, reject) => {
         pool.query(
@@ -194,12 +190,12 @@ class WorkerTable {
           ],
           (error, response) => {
             if (error) {
-              return reject(error);
+              return reject(error)
             }
-            resolve({ message: "success" });
+            resolve({ message: "success" })
           }
-        );
-      });
+        )
+      })
     } else {
       return new Promise((resolve, reject) => {
         pool.query(
@@ -233,24 +229,24 @@ class WorkerTable {
           ],
           (error, response) => {
             if (error) {
-              return reject(error);
+              return reject(error)
             }
-            resolve({ message: "success" });
+            resolve({ message: "success" })
           }
-        );
-      });
+        )
+      })
     }
   }
   static getRandomHee() {
     return new Promise((resolve, reject) => {
       pool.query(`SELECT random_huruu_hee();`, [], (error, response) => {
         if (error) {
-          return reject(error);
+          return reject(error)
         }
-        resolve(response.rows);
-      });
-    });
+        resolve(response.rows)
+      })
+    })
   }
 }
 
-module.exports = WorkerTable;
+module.exports = WorkerTable

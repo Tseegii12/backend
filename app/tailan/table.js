@@ -1,4 +1,4 @@
-const pool = require("../../databasePool");
+const pool = require("../../databasePool")
 
 class TailanTable {
   static getAjilDelgerengui({ process_id, block_id }) {
@@ -13,11 +13,11 @@ class TailanTable {
         INNER JOIN material ON field_work.material_id = material.id`,
         [process_id, block_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static getAjilDelgerenguiByAil({ process_id, block_id, field_id }) {
     return new Promise((resolve, reject) => {
@@ -31,11 +31,11 @@ class TailanTable {
         INNER JOIN material ON field_work.material_id = material.id`,
         [process_id, block_id, field_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static getBaraaMaterial1({ process_id, block_id }) {
     return new Promise((resolve, reject) => {
@@ -70,11 +70,11 @@ class TailanTable {
         WHERE block_id1 = $2 AND process_id1 = $1`,
         [process_id, block_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static getBaraaMaterial2({ process_id, block_id }) {
     return new Promise((resolve, reject) => {
@@ -109,11 +109,11 @@ class TailanTable {
         WHERE block_id = $2 AND process_id = $1`,
         [process_id, block_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static getAjilchidByWork({ block_id, user_id }) {
     return new Promise((resolve, reject) => {
@@ -127,11 +127,11 @@ class TailanTable {
         INNER JOIN material ON field_work.material_id = material.id`,
         [block_id, user_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static getAjilchid({ block_id }) {
     return new Promise((resolve, reject) => {
@@ -139,12 +139,12 @@ class TailanTable {
         `SELECT user_block.*, users.name FROM user_block INNER JOIN users ON user_block.user_id = users.id WHERE user_block.block_id = $1`,
         [block_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
 }
 
-module.exports = TailanTable;
+module.exports = TailanTable

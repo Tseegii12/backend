@@ -1,6 +1,6 @@
-const { Router } = require("express");
-const router = new Router();
-const WorkerTable = require("../worker/table");
+const { Router } = require("express")
+const router = new Router()
+const WorkerTable = require("../worker/table")
 
 //admin
 router.post("/insert", (req, res, next) => {
@@ -18,7 +18,7 @@ router.post("/insert", (req, res, next) => {
     comment,
     tuluv_id,
     huruu_code,
-  } = req.body;
+  } = req.body
   WorkerTable.insert({
     ovog,
     ner,
@@ -35,39 +35,39 @@ router.post("/insert", (req, res, next) => {
     huruu_code,
   })
     .then(({ message }) => {
-      res.json({ message });
+      res.json({ message })
     })
-    .catch((error) => next(error));
-});
+    .catch((error) => next(error))
+})
 
 router.get("/getAll", (req, res, next) => {
   WorkerTable.getAll()
     .then((result) => {
-      res.json(result);
+      res.json(result)
     })
-    .catch((error) => next(error));
-});
+    .catch((error) => next(error))
+})
 
 router.post("/getAllByManager", (req, res, next) => {
-  const { manager_id } = req.body;
+  const { manager_id } = req.body
   WorkerTable.getAllByManager({ manager_id })
     .then((result) => {
-      res.json(result);
+      res.json(result)
     })
-    .catch((error) => next(error));
-});
+    .catch((error) => next(error))
+})
 
 router.post("/delete", (req, res, next) => {
-  const { id } = req.body;
+  const { id } = req.body
   WorkerTable.delete({ id })
     .then(({ message }) => {
-      res.json({ message });
+      res.json({ message })
     })
     .catch((error) => {
-      res.json({ error: error.code });
-      next(error);
-    });
-});
+      res.json({ error: error.code })
+      next(error)
+    })
+})
 
 router.post("/update", (req, res, next) => {
   const {
@@ -85,7 +85,7 @@ router.post("/update", (req, res, next) => {
     tuluv_id,
     id,
     huruu_code,
-  } = req.body;
+  } = req.body
   WorkerTable.update({
     ovog,
     ner,
@@ -103,19 +103,19 @@ router.post("/update", (req, res, next) => {
     huruu_code,
   })
     .then(({ message }) => {
-      res.json({ message });
+      res.json({ message })
     })
-    .catch((error) => next(error));
-});
+    .catch((error) => next(error))
+})
 
 router.get("/getRandomHee", (req, res, next) => {
   WorkerTable.getRandomHee()
     .then((response) => {
-      res.json(response);
+      res.json(response)
     })
     .catch((error) => {
-      next(error);
-    });
-});
+      next(error)
+    })
+})
 
-module.exports = router;
+module.exports = router

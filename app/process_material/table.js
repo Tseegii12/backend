@@ -1,4 +1,4 @@
-const pool = require("../../databasePool");
+const pool = require("../../databasePool")
 
 class ProcessMaterialTable {
   //admin
@@ -8,11 +8,11 @@ class ProcessMaterialTable {
         `INSERT INTO process_material(process_work_id, material_id, material_too, date) VALUES($1, $2, $3, NOW())`,
         [process_work_id, material_id, material_too],
         (error, response) => {
-          if (error) return reject(error);
-          resolve({ message: "success" });
+          if (error) return reject(error)
+          resolve({ message: "success" })
         }
-      );
-    });
+      )
+    })
   }
   static getAll() {
     return new Promise((resolve, reject) => {
@@ -44,11 +44,11 @@ class ProcessMaterialTable {
           as table1 on process_material.process_work_id = table1.id where process_material.is_action = false`,
         [],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static update({ id }) {
     return new Promise((resolve, reject) => {
@@ -56,11 +56,11 @@ class ProcessMaterialTable {
         `UPDATE process_material SET is_action=true WHERE id = $1`,
         [id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve({ message: "success" });
+          if (error) return reject(error)
+          resolve({ message: "success" })
         }
-      );
-    });
+      )
+    })
   }
   static getAllById({ process_work_id }) {
     return new Promise((resolve, reject) => {
@@ -68,12 +68,12 @@ class ProcessMaterialTable {
         `SELECT * FROM process_material WHERE process_work_id = $1`,
         [process_work_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
 }
 
-module.exports = ProcessMaterialTable;
+module.exports = ProcessMaterialTable

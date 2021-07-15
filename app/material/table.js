@@ -1,4 +1,4 @@
-const pool = require("../../databasePool");
+const pool = require("../../databasePool")
 
 class MaterialTable {
   //admin
@@ -8,11 +8,11 @@ class MaterialTable {
         `INSERT INTO material(name, material_unit, code, material_type_id) VALUES($1, $2, $3, $4)`,
         [name, material_unit, code, material_type_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve({ message: "success" });
+          if (error) return reject(error)
+          resolve({ message: "success" })
         }
-      );
-    });
+      )
+    })
   }
 
   static getAll() {
@@ -23,11 +23,11 @@ class MaterialTable {
         INNER JOIN hemjee ON material.material_unit = hemjee.id ORDER BY name, code, type_name`,
         [],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
 
   static update({ name, material_unit, code, material_type_id, id }) {
@@ -36,26 +36,22 @@ class MaterialTable {
         `UPDATE material SET name=$1, material_unit=$2, code=$3, material_type_id=$4 WHERE id=$5`,
         [name, material_unit, code, material_type_id, id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve({ message: "success" });
+          if (error) return reject(error)
+          resolve({ message: "success" })
         }
-      );
-    });
+      )
+    })
   }
 
   static delete({ id }) {
     return new Promise((resolve, reject) => {
-      pool.query(
-        `DELETE FROM material WHERE id = $1`,
-        [id],
-        (error, response) => {
-          if (error) return reject(error);
-          resolve({ message: "success" });
-        }
-      );
-    });
+      pool.query(`DELETE FROM material WHERE id = $1`, [id], (error, response) => {
+        if (error) return reject(error)
+        resolve({ message: "success" })
+      })
+    })
   }
   //mobile
 }
 
-module.exports = MaterialTable;
+module.exports = MaterialTable

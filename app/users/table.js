@@ -1,4 +1,4 @@
-const pool = require("../../databasePool");
+const pool = require("../../databasePool")
 
 class UsersTable {
   //admin
@@ -9,12 +9,12 @@ class UsersTable {
         [],
         (error, response) => {
           if (error) {
-            return reject(error);
+            return reject(error)
           }
-          resolve(response.rows);
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
 
   //mobile
@@ -22,11 +22,11 @@ class UsersTable {
     return new Promise((resolve, reject) => {
       pool.query(`SELECT*FROM users WHERE type_id=3`, [], (error, response) => {
         if (error) {
-          return reject(error);
+          return reject(error)
         }
-        resolve(response.rows);
-      });
-    });
+        resolve(response.rows)
+      })
+    })
   }
   static getUsersForPicker() {
     return new Promise((resolve, reject) => {
@@ -35,13 +35,13 @@ class UsersTable {
         [],
         (error, response) => {
           if (error) {
-            return reject(error);
+            return reject(error)
           }
-          resolve(response.rows);
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
 }
 
-module.exports = UsersTable;
+module.exports = UsersTable

@@ -1,9 +1,9 @@
-const { Router } = require("express");
-const router = new Router();
+const { Router } = require("express")
+const router = new Router()
 // const multer = require("multer");
 // const path = require("path");
 
-const FieldWorkTable = require("../field_work/table");
+const FieldWorkTable = require("../field_work/table")
 
 // var storage = multer.diskStorage({
 //   destination: function (req, file, cb) {
@@ -24,7 +24,7 @@ const FieldWorkTable = require("../field_work/table");
 // var upload = multer({ storage: storage });
 
 router.post("/insert", (req, res, next) => {
-  const { work_id, hemjee, hemjih_negj_id, field_id, zagvar_id } = req.body;
+  const { work_id, hemjee, hemjih_negj_id, field_id, zagvar_id } = req.body
   FieldWorkTable.insert({
     work_id,
     hemjee,
@@ -33,13 +33,13 @@ router.post("/insert", (req, res, next) => {
     zagvar_id,
   })
     .then(({ message }) => {
-      res.json({ message });
+      res.json({ message })
     })
-    .catch((error) => next(error));
-});
+    .catch((error) => next(error))
+})
 
 router.post("/update", (req, res, next) => {
-  const { work_id, hemjee, hemjih_negj_id, field_id, zagvar_id, id } = req.body;
+  const { work_id, hemjee, hemjih_negj_id, field_id, zagvar_id, id } = req.body
   FieldWorkTable.update({
     work_id,
     hemjee,
@@ -49,29 +49,29 @@ router.post("/update", (req, res, next) => {
     id,
   })
     .then(({ message }) => {
-      res.json({ message });
+      res.json({ message })
     })
-    .catch((error) => next(error));
-});
+    .catch((error) => next(error))
+})
 
 router.get("/getAll", (req, res, next) => {
   FieldWorkTable.getAll()
     .then((response) => {
-      res.json(response);
+      res.json(response)
     })
-    .catch((error) => next(error));
-});
+    .catch((error) => next(error))
+})
 
 router.post("/delete", (req, res, next) => {
-  const { id } = req.body;
+  const { id } = req.body
   FieldWorkTable.delete({ id })
     .then(({ message }) => {
-      res.json({ message });
+      res.json({ message })
     })
     .catch((error) => {
-      res.json({ error: error.code });
-      next(error);
-    });
-});
+      res.json({ error: error.code })
+      next(error)
+    })
+})
 
-module.exports = router;
+module.exports = router

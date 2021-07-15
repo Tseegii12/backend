@@ -1,47 +1,47 @@
-const { Router } = require("express");
-const router = new Router();
-var moment = require("moment"); // require
-const ProcessWorkTable = require("../process_work/table");
-const ProcessWorkViewTable = require("../process_work/viewTable");
+const { Router } = require("express")
+const router = new Router()
+var moment = require("moment") // require
+const ProcessWorkTable = require("../process_work/table")
+const ProcessWorkViewTable = require("../process_work/viewTable")
 
 //admin
 router.post("/insert", (req, res, next) => {
-  const { field_work_id, unit_id, manager_id, admin_id } = req.body;
+  const { field_work_id, unit_id, manager_id, admin_id } = req.body
   ProcessWorkTable.insert({ field_work_id, unit_id, manager_id, admin_id })
     .then(({ message }) => {
-      res.json({ message });
+      res.json({ message })
     })
-    .catch((error) => next(error));
-});
+    .catch((error) => next(error))
+})
 
 router.get("/getAll", (req, res, next) => {
-  let array = [];
+  let array = []
   ProcessWorkViewTable.getAll()
     .then((response) => {
       response.forEach((item) => {
-        let date1 = item.start_date1_admin;
+        let date1 = item.start_date1_admin
         if (date1 !== null) {
-          date1 = moment(item.start_date1_admin).format("MM/DD/YYYY");
+          date1 = moment(item.start_date1_admin).format("MM/DD/YYYY")
         }
-        let date2 = item.finish_date1_admin;
+        let date2 = item.finish_date1_admin
         if (date2 !== null) {
-          date2 = moment(item.finish_date1_admin).format("MM/DD/YYYY");
+          date2 = moment(item.finish_date1_admin).format("MM/DD/YYYY")
         }
-        let date3 = item.start_date_manager;
+        let date3 = item.start_date_manager
         if (date3 !== null) {
-          date3 = moment(item.start_date_manager).format("MM/DD/YYYY");
+          date3 = moment(item.start_date_manager).format("MM/DD/YYYY")
         }
-        let date4 = item.finish_date_manager;
+        let date4 = item.finish_date_manager
         if (date4 !== null) {
-          date4 = moment(item.finish_date_manager).format("MM/DD/YYYY");
+          date4 = moment(item.finish_date_manager).format("MM/DD/YYYY")
         }
-        let date5 = item.start_date2_admin;
+        let date5 = item.start_date2_admin
         if (date5 !== null) {
-          date5 = moment(item.start_date2_admin).format("MM/DD/YYYY");
+          date5 = moment(item.start_date2_admin).format("MM/DD/YYYY")
         }
-        let date6 = item.finish_date2_admin;
+        let date6 = item.finish_date2_admin
         if (date6 !== null) {
-          date6 = moment(item.finish_date2_admin).format("MM/DD/YYYY");
+          date6 = moment(item.finish_date2_admin).format("MM/DD/YYYY")
         }
         let obj = {
           comment: item.comment,
@@ -74,43 +74,43 @@ router.get("/getAll", (req, res, next) => {
           unit_name: item.unit_name,
           pj_name: item.pj_name,
           block_name: item.block_name,
-        };
-        array.push(obj);
-      });
-      res.json(array);
+        }
+        array.push(obj)
+      })
+      res.json(array)
     })
-    .catch((error) => next(error));
-});
+    .catch((error) => next(error))
+})
 
 router.post("/getAllByManagerID", (req, res, next) => {
-  const { manager_id } = req.body;
-  let array = [];
+  const { manager_id } = req.body
+  let array = []
   ProcessWorkViewTable.getAllByManagerID({ manager_id })
     .then((response) => {
       response.forEach((item) => {
-        let date1 = item.start_date1_admin;
+        let date1 = item.start_date1_admin
         if (date1 !== null) {
-          date1 = moment(item.start_date1_admin).format("MM/DD/YYYY");
+          date1 = moment(item.start_date1_admin).format("MM/DD/YYYY")
         }
-        let date2 = item.finish_date1_admin;
+        let date2 = item.finish_date1_admin
         if (date2 !== null) {
-          date2 = moment(item.finish_date1_admin).format("MM/DD/YYYY");
+          date2 = moment(item.finish_date1_admin).format("MM/DD/YYYY")
         }
-        let date3 = item.start_date2_admin;
+        let date3 = item.start_date2_admin
         if (date3 !== null) {
-          date3 = moment(item.start_date2_admin).format("MM/DD/YYYY");
+          date3 = moment(item.start_date2_admin).format("MM/DD/YYYY")
         }
-        let date4 = item.finish_date2_admin;
+        let date4 = item.finish_date2_admin
         if (date4 !== null) {
-          date4 = moment(item.finish_date2_admin).format("MM/DD/YYYY");
+          date4 = moment(item.finish_date2_admin).format("MM/DD/YYYY")
         }
-        let date5 = item.finish_date_manager;
+        let date5 = item.finish_date_manager
         if (date5 !== null) {
-          date5 = moment(item.finish_date_manager).format("MM/DD/YYYY");
+          date5 = moment(item.finish_date_manager).format("MM/DD/YYYY")
         }
-        let date6 = item.start_date_manager;
+        let date6 = item.start_date_manager
         if (date6 !== null) {
-          date6 = moment(item.start_date_manager).format("MM/DD/YYYY");
+          date6 = moment(item.start_date_manager).format("MM/DD/YYYY")
         }
         let obj = {
           id: item.id,
@@ -134,152 +134,146 @@ router.post("/getAllByManagerID", (req, res, next) => {
           block_name: item.block_name,
           hemjee: item.hemjee,
           hemjee_name: item.hemjee_name,
-        };
-        array.push(obj);
-      });
+        }
+        array.push(obj)
+      })
 
-      res.json(array);
+      res.json(array)
     })
-    .catch((error) => next(error));
-});
+    .catch((error) => next(error))
+})
 
 router.get("/getAllTest", (req, res, next) => {
-  let arr1 = [];
+  let arr1 = []
   ProcessWorkViewTable.getAllTest()
     .then((result) => {
       result.forEach((itemResult) => {
-        let arr2 = [];
-        arr2.push(itemResult.pj_name);
-        arr2.push(itemResult.block_name);
-        arr2.push(itemResult.unit_name);
-        arr2.push(itemResult.zagvar_name);
-        arr2.push(itemResult.field_name);
-        arr2.push(itemResult.work_name);
-        arr2.push(itemResult.hemjee);
-        arr2.push(itemResult.hemjee_name);
-        arr2.push(itemResult.material_name);
-        arr2.push(itemResult.material_code);
+        let arr2 = []
+        arr2.push(itemResult.pj_name)
+        arr2.push(itemResult.block_name)
+        arr2.push(itemResult.unit_name)
+        arr2.push(itemResult.zagvar_name)
+        arr2.push(itemResult.field_name)
+        arr2.push(itemResult.work_name)
+        arr2.push(itemResult.hemjee)
+        arr2.push(itemResult.hemjee_name)
+        arr2.push(itemResult.material_name)
+        arr2.push(itemResult.material_code)
         //
-        arr2.push(itemResult.is_start_1_admin);
+        arr2.push(itemResult.is_start_1_admin)
         if (itemResult.start_date1_admin !== null) {
-          arr2.push(moment(itemResult.start_date1_admin).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.start_date1_admin).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.start_date1_admin);
+          arr2.push(itemResult.start_date1_admin)
         }
-        arr2.push(itemResult.is_done_1_admin);
+        arr2.push(itemResult.is_done_1_admin)
         if (itemResult.finish_date1_admin !== null) {
-          arr2.push(moment(itemResult.finish_date1_admin).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.finish_date1_admin).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.finish_date1_admin);
+          arr2.push(itemResult.finish_date1_admin)
         }
         //
-        arr2.push(itemResult.is_start_2_admin);
+        arr2.push(itemResult.is_start_2_admin)
         if (itemResult.start_date2_admin !== null) {
-          arr2.push(moment(itemResult.start_date2_admin).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.start_date2_admin).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.start_date2_admin);
+          arr2.push(itemResult.start_date2_admin)
         }
-        arr2.push(itemResult.is_done_2_admin);
+        arr2.push(itemResult.is_done_2_admin)
         if (itemResult.finish_date2_admin !== null) {
-          arr2.push(moment(itemResult.finish_date2_admin).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.finish_date2_admin).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.finish_date2_admin);
+          arr2.push(itemResult.finish_date2_admin)
         }
         if (itemResult.start_date_manager !== null) {
-          arr2.push(moment(itemResult.start_date_manager).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.start_date_manager).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.start_date_manager);
+          arr2.push(itemResult.start_date_manager)
         }
         if (itemResult.finish_date_manager !== null) {
-          arr2.push(
-            moment(itemResult.finish_date_manager).format("MM/DD/YYYY")
-          );
+          arr2.push(moment(itemResult.finish_date_manager).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.finish_date_manager);
+          arr2.push(itemResult.finish_date_manager)
         }
-        arr2.push(itemResult.comment);
-        arr2.push(itemResult.f_material_too);
-        arr2.push(itemResult.l_material_too);
+        arr2.push(itemResult.comment)
+        arr2.push(itemResult.f_material_too)
+        arr2.push(itemResult.l_material_too)
         if (itemResult.process_material_date !== null) {
-          arr2.push(
-            moment(itemResult.process_material_date).format("MM/DD/YYYY")
-          );
+          arr2.push(moment(itemResult.process_material_date).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.process_material_date);
+          arr2.push(itemResult.process_material_date)
         }
-        arr2.push(itemResult.nyarav_name);
-        arr2.push(itemResult.manager_name);
-        arr2.push(itemResult.admin_name);
-        arr1.push(arr2);
-      });
-      res.json(arr1);
+        arr2.push(itemResult.nyarav_name)
+        arr2.push(itemResult.manager_name)
+        arr2.push(itemResult.admin_name)
+        arr1.push(arr2)
+      })
+      res.json(arr1)
     })
-    .catch((error) => next(error));
-});
+    .catch((error) => next(error))
+})
 
 //mobile
 //---------------MOBILE TABLE------------//
 
 router.post("/getProcessWorks", (req, res, next) => {
-  const { unit_id, field_id } = req.body;
-  let arr1 = [];
+  const { unit_id, field_id } = req.body
+  let arr1 = []
   ProcessWorkViewTable.getProcessWorks({ unit_id, field_id })
     .then((result) => {
       result.forEach((itemResult) => {
-        let arr2 = [];
-        arr2.push(itemResult.work_name);
-        arr2.push(itemResult.hemjee);
-        arr2.push(itemResult.hemjee_name);
-        arr2.push(itemResult.is_start_1_admin);
+        let arr2 = []
+        arr2.push(itemResult.work_name)
+        arr2.push(itemResult.hemjee)
+        arr2.push(itemResult.hemjee_name)
+        arr2.push(itemResult.is_start_1_admin)
         if (itemResult.start_date1_admin !== null) {
-          arr2.push(moment(itemResult.start_date1_admin).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.start_date1_admin).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.start_date1_admin);
+          arr2.push(itemResult.start_date1_admin)
         }
-        arr2.push(itemResult.is_start_2_admin);
+        arr2.push(itemResult.is_start_2_admin)
         if (itemResult.start_date2_admin !== null) {
-          arr2.push(moment(itemResult.start_date2_admin).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.start_date2_admin).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.start_date2_admin);
+          arr2.push(itemResult.start_date2_admin)
         }
-        arr2.push(itemResult.is_done_1_admin);
+        arr2.push(itemResult.is_done_1_admin)
         if (itemResult.finish_date1_admin !== null) {
-          arr2.push(moment(itemResult.finish_date1_admin).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.finish_date1_admin).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.finish_date1_admin);
+          arr2.push(itemResult.finish_date1_admin)
         }
-        arr2.push(itemResult.is_done_2_admin);
+        arr2.push(itemResult.is_done_2_admin)
         if (itemResult.finish_date2_admin !== null) {
-          arr2.push(moment(itemResult.finish_date2_admin).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.finish_date2_admin).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.finish_date2_admin);
+          arr2.push(itemResult.finish_date2_admin)
         }
         if (itemResult.start_date_manager !== null) {
-          arr2.push(moment(itemResult.start_date_manager).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.start_date_manager).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.start_date_manager);
+          arr2.push(itemResult.start_date_manager)
         }
         if (itemResult.finish_date_manager !== null) {
-          arr2.push(
-            moment(itemResult.finish_date_manager).format("MM/DD/YYYY")
-          );
+          arr2.push(moment(itemResult.finish_date_manager).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.finish_date_manager);
+          arr2.push(itemResult.finish_date_manager)
         }
-        arr2.push(itemResult.admin_name);
-        arr2.push(itemResult.manager_name);
-        arr2.push(itemResult.comment);
-        arr2.push(itemResult.id);
-        arr1.push(arr2);
-      });
-      res.json(arr1);
+        arr2.push(itemResult.admin_name)
+        arr2.push(itemResult.manager_name)
+        arr2.push(itemResult.comment)
+        arr2.push(itemResult.id)
+        arr1.push(arr2)
+      })
+      res.json(arr1)
     })
-    .catch((error) => next(error));
-});
+    .catch((error) => next(error))
+})
 
 router.post("/getProcessWorksSearch", (req, res, next) => {
-  const { unit_id, field_id, manager_id, is_done } = req.body;
-  let arr1 = [];
+  const { unit_id, field_id, manager_id, is_done } = req.body
+  let arr1 = []
   ProcessWorkViewTable.getProcessWorksSearch({
     unit_id,
     field_id,
@@ -288,116 +282,112 @@ router.post("/getProcessWorksSearch", (req, res, next) => {
   })
     .then((result) => {
       result.forEach((itemResult) => {
-        let arr2 = [];
-        arr2.push(itemResult.work_name);
-        arr2.push(itemResult.hemjee);
-        arr2.push(itemResult.hemjee_name);
-        arr2.push(itemResult.is_start_1_admin);
+        let arr2 = []
+        arr2.push(itemResult.work_name)
+        arr2.push(itemResult.hemjee)
+        arr2.push(itemResult.hemjee_name)
+        arr2.push(itemResult.is_start_1_admin)
         if (itemResult.start_date1_admin !== null) {
-          arr2.push(moment(itemResult.start_date1_admin).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.start_date1_admin).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.start_date1_admin);
+          arr2.push(itemResult.start_date1_admin)
         }
-        arr2.push(itemResult.is_start_2_admin);
+        arr2.push(itemResult.is_start_2_admin)
         if (itemResult.start_date2_admin !== null) {
-          arr2.push(moment(itemResult.start_date2_admin).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.start_date2_admin).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.start_date2_admin);
+          arr2.push(itemResult.start_date2_admin)
         }
-        arr2.push(itemResult.is_done_1_admin);
+        arr2.push(itemResult.is_done_1_admin)
         if (itemResult.finish_date1_admin !== null) {
-          arr2.push(moment(itemResult.finish_date1_admin).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.finish_date1_admin).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.finish_date1_admin);
+          arr2.push(itemResult.finish_date1_admin)
         }
-        arr2.push(itemResult.is_done_2_admin);
+        arr2.push(itemResult.is_done_2_admin)
         if (itemResult.finish_date2_admin !== null) {
-          arr2.push(moment(itemResult.finish_date2_admin).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.finish_date2_admin).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.finish_date2_admin);
+          arr2.push(itemResult.finish_date2_admin)
         }
         if (itemResult.start_date_manager !== null) {
-          arr2.push(moment(itemResult.start_date_manager).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.start_date_manager).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.start_date_manager);
+          arr2.push(itemResult.start_date_manager)
         }
         if (itemResult.finish_date_manager !== null) {
-          arr2.push(
-            moment(itemResult.finish_date_manager).format("MM/DD/YYYY")
-          );
+          arr2.push(moment(itemResult.finish_date_manager).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.finish_date_manager);
+          arr2.push(itemResult.finish_date_manager)
         }
-        arr2.push(itemResult.admin_name);
-        arr2.push(itemResult.manager_name);
-        arr2.push(itemResult.comment);
-        arr2.push(itemResult.id);
-        arr1.push(arr2);
-      });
-      res.json(arr1);
+        arr2.push(itemResult.admin_name)
+        arr2.push(itemResult.manager_name)
+        arr2.push(itemResult.comment)
+        arr2.push(itemResult.id)
+        arr1.push(arr2)
+      })
+      res.json(arr1)
     })
-    .catch((error) => next(error));
-});
+    .catch((error) => next(error))
+})
 
 router.post("/getProcessWorks1", (req, res, next) => {
-  const { project_id, block_id, type } = req.body;
-  let arr1 = [];
+  const { project_id, block_id, type } = req.body
+  let arr1 = []
   ProcessWorkViewTable.getProcessWorks1({ project_id, block_id, type })
     .then((result) => {
       result.forEach((itemResult) => {
-        let arr2 = [];
-        arr2.push(itemResult.work_name);
-        arr2.push(itemResult.hemjee);
-        arr2.push(itemResult.hemjee_name);
-        arr2.push(itemResult.is_start_1_admin);
+        let arr2 = []
+        arr2.push(itemResult.work_name)
+        arr2.push(itemResult.hemjee)
+        arr2.push(itemResult.hemjee_name)
+        arr2.push(itemResult.is_start_1_admin)
         if (itemResult.start_date1_admin !== null) {
-          arr2.push(moment(itemResult.start_date1_admin).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.start_date1_admin).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.start_date1_admin);
+          arr2.push(itemResult.start_date1_admin)
         }
-        arr2.push(itemResult.is_start_2_admin);
+        arr2.push(itemResult.is_start_2_admin)
         if (itemResult.start_date2_admin !== null) {
-          arr2.push(moment(itemResult.start_date2_admin).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.start_date2_admin).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.start_date2_admin);
+          arr2.push(itemResult.start_date2_admin)
         }
-        arr2.push(itemResult.is_done_1_admin);
+        arr2.push(itemResult.is_done_1_admin)
         if (itemResult.finish_date1_admin !== null) {
-          arr2.push(moment(itemResult.finish_date1_admin).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.finish_date1_admin).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.finish_date1_admin);
+          arr2.push(itemResult.finish_date1_admin)
         }
-        arr2.push(itemResult.is_done_2_admin);
+        arr2.push(itemResult.is_done_2_admin)
         if (itemResult.finish_date2_admin !== null) {
-          arr2.push(moment(itemResult.finish_date2_admin).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.finish_date2_admin).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.finish_date2_admin);
+          arr2.push(itemResult.finish_date2_admin)
         }
         if (itemResult.start_date_manager !== null) {
-          arr2.push(moment(itemResult.start_date_manager).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.start_date_manager).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.start_date_manager);
+          arr2.push(itemResult.start_date_manager)
         }
         if (itemResult.finish_date_manager !== null) {
-          arr2.push(
-            moment(itemResult.finish_date_manager).format("MM/DD/YYYY")
-          );
+          arr2.push(moment(itemResult.finish_date_manager).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.finish_date_manager);
+          arr2.push(itemResult.finish_date_manager)
         }
-        arr2.push(itemResult.admin_name);
-        arr2.push(itemResult.manager_name);
-        arr2.push(itemResult.comment);
-        arr1.push(arr2);
-      });
-      res.json(arr1);
+        arr2.push(itemResult.admin_name)
+        arr2.push(itemResult.manager_name)
+        arr2.push(itemResult.comment)
+        arr1.push(arr2)
+      })
+      res.json(arr1)
     })
-    .catch((error) => next(error));
-});
+    .catch((error) => next(error))
+})
 
 router.post("/getProcessWorks2", (req, res, next) => {
-  const { project_id, block_id, type, floor_id } = req.body;
-  let arr1 = [];
+  const { project_id, block_id, type, floor_id } = req.body
+  let arr1 = []
   ProcessWorkViewTable.getProcessWorks2({
     project_id,
     block_id,
@@ -406,93 +396,91 @@ router.post("/getProcessWorks2", (req, res, next) => {
   })
     .then((result) => {
       result.forEach((itemResult) => {
-        let arr2 = [];
-        arr2.push(itemResult.work_name);
-        arr2.push(itemResult.hemjee);
-        arr2.push(itemResult.hemjee_name);
-        arr2.push(itemResult.is_start_1_admin);
+        let arr2 = []
+        arr2.push(itemResult.work_name)
+        arr2.push(itemResult.hemjee)
+        arr2.push(itemResult.hemjee_name)
+        arr2.push(itemResult.is_start_1_admin)
         if (itemResult.start_date1_admin !== null) {
-          arr2.push(moment(itemResult.start_date1_admin).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.start_date1_admin).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.start_date1_admin);
+          arr2.push(itemResult.start_date1_admin)
         }
-        arr2.push(itemResult.is_start_2_admin);
+        arr2.push(itemResult.is_start_2_admin)
         if (itemResult.start_date2_admin !== null) {
-          arr2.push(moment(itemResult.start_date2_admin).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.start_date2_admin).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.start_date2_admin);
+          arr2.push(itemResult.start_date2_admin)
         }
-        arr2.push(itemResult.is_done_1_admin);
+        arr2.push(itemResult.is_done_1_admin)
         if (itemResult.finish_date1_admin !== null) {
-          arr2.push(moment(itemResult.finish_date1_admin).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.finish_date1_admin).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.finish_date1_admin);
+          arr2.push(itemResult.finish_date1_admin)
         }
-        arr2.push(itemResult.is_done_2_admin);
+        arr2.push(itemResult.is_done_2_admin)
         if (itemResult.finish_date2_admin !== null) {
-          arr2.push(moment(itemResult.finish_date2_admin).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.finish_date2_admin).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.finish_date2_admin);
+          arr2.push(itemResult.finish_date2_admin)
         }
         if (itemResult.start_date_manager !== null) {
-          arr2.push(moment(itemResult.start_date_manager).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.start_date_manager).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.start_date_manager);
+          arr2.push(itemResult.start_date_manager)
         }
         if (itemResult.finish_date_manager !== null) {
-          arr2.push(
-            moment(itemResult.finish_date_manager).format("MM/DD/YYYY")
-          );
+          arr2.push(moment(itemResult.finish_date_manager).format("MM/DD/YYYY"))
         } else {
-          arr2.push(itemResult.finish_date_manager);
+          arr2.push(itemResult.finish_date_manager)
         }
-        arr2.push(itemResult.admin_name);
-        arr2.push(itemResult.manager_name);
-        arr2.push(itemResult.comment);
-        arr2.push(itemResult.id);
-        arr1.push(arr2);
-      });
-      res.json(arr1);
+        arr2.push(itemResult.admin_name)
+        arr2.push(itemResult.manager_name)
+        arr2.push(itemResult.comment)
+        arr2.push(itemResult.id)
+        arr1.push(arr2)
+      })
+      res.json(arr1)
     })
-    .catch((error) => next(error));
-});
+    .catch((error) => next(error))
+})
 
 router.post("/getProcessWorks3", (req, res, next) => {
-  const { manager_id, unit_id } = req.body;
-  let arr1 = [];
+  const { manager_id, unit_id } = req.body
+  let arr1 = []
   ProcessWorkViewTable.getProcessWorks3({
     manager_id,
     unit_id,
   })
     .then((result) => {
       result.forEach((itemResult) => {
-        let arr2 = [];
-        arr2.push(itemResult.work_name);
-        arr2.push(itemResult.field_name);
+        let arr2 = []
+        arr2.push(itemResult.work_name)
+        arr2.push(itemResult.field_name)
         if (
           itemResult.start_date1_admin !== null &&
           itemResult.start_date2_admin === null
         ) {
-          arr2.push(moment(itemResult.start_date1_admin).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.start_date1_admin).format("MM/DD/YYYY"))
         } else if (
           itemResult.start_date1_admin === null &&
           itemResult.start_date2_admin !== null
         ) {
-          arr2.push(moment(itemResult.start_date2_admin).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.start_date2_admin).format("MM/DD/YYYY"))
         } else {
-          arr2.push(null);
+          arr2.push(null)
         }
-        arr2.push(itemResult.id);
-        arr1.push(arr2);
-      });
-      res.json(arr1);
+        arr2.push(itemResult.id)
+        arr1.push(arr2)
+      })
+      res.json(arr1)
     })
-    .catch((error) => next(error));
-});
+    .catch((error) => next(error))
+})
 
 router.post("/getProcessWorks3Search", (req, res, next) => {
-  const { manager_id, unit_id, trueA, trueB } = req.body;
-  let arr1 = [];
+  const { manager_id, unit_id, trueA, trueB } = req.body
+  let arr1 = []
   ProcessWorkViewTable.getProcessWorks3Search({
     manager_id,
     unit_id,
@@ -501,33 +489,33 @@ router.post("/getProcessWorks3Search", (req, res, next) => {
   })
     .then((result) => {
       result.forEach((itemResult) => {
-        let arr2 = [];
-        arr2.push(itemResult.work_name);
-        arr2.push(itemResult.field_name);
+        let arr2 = []
+        arr2.push(itemResult.work_name)
+        arr2.push(itemResult.field_name)
         if (
           itemResult.start_date1_admin !== null &&
           itemResult.start_date2_admin === null
         ) {
-          arr2.push(moment(itemResult.start_date1_admin).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.start_date1_admin).format("MM/DD/YYYY"))
         } else if (
           itemResult.start_date1_admin === null &&
           itemResult.start_date2_admin !== null
         ) {
-          arr2.push(moment(itemResult.start_date2_admin).format("MM/DD/YYYY"));
+          arr2.push(moment(itemResult.start_date2_admin).format("MM/DD/YYYY"))
         } else {
-          arr2.push(null);
+          arr2.push(null)
         }
-        arr2.push(itemResult.id);
-        arr1.push(arr2);
-      });
-      res.json(arr1);
+        arr2.push(itemResult.id)
+        arr1.push(arr2)
+      })
+      res.json(arr1)
     })
-    .catch((error) => next(error));
-});
+    .catch((error) => next(error))
+})
 
 router.post("/getAllByPWid", (req, res, next) => {
-  const { process_work_id } = req.body;
-  let array = [];
+  const { process_work_id } = req.body
+  let array = []
   ProcessWorkViewTable.getAllByPWid({ process_work_id })
     .then((response) => {
       response.forEach((item) => {
@@ -537,41 +525,36 @@ router.post("/getAllByPWid", (req, res, next) => {
           material_name: item.material_name,
           f_material_too: item.f_material_too,
           l_material_too: item.l_material_too,
-        };
-        array.push(object);
-      });
-      res.json(array);
+        }
+        array.push(object)
+      })
+      res.json(array)
     })
-    .catch((error) => next(error));
-});
+    .catch((error) => next(error))
+})
 
 //-------------ACTION BEGIN HERE-----------------//
 
 router.post("/update1Admin", (req, res, next) => {
-  const { process_id } = req.body;
+  const { process_id } = req.body
   ProcessWorkTable.update1Admin({ process_id })
     .then(({ message }) => {
-      res.json({ message });
+      res.json({ message })
     })
-    .catch((error) => next(error));
-});
+    .catch((error) => next(error))
+})
 
 router.post("/update1Zahiral", (req, res, next) => {
-  const { process_id } = req.body;
+  const { process_id } = req.body
   ProcessWorkTable.update1Zahiral({ process_id })
     .then(({ message }) => {
-      res.json({ message });
+      res.json({ message })
     })
-    .catch((error) => next(error));
-});
+    .catch((error) => next(error))
+})
 
 router.post("/update2Manager", (req, res, next) => {
-  const {
-    start_date_manager,
-    comment,
-    finish_date_manager,
-    process_id,
-  } = req.body;
+  const { start_date_manager, comment, finish_date_manager, process_id } = req.body
   ProcessWorkTable.update2Manager({
     start_date_manager,
     comment,
@@ -579,10 +562,10 @@ router.post("/update2Manager", (req, res, next) => {
     process_id,
   })
     .then(({ message }) => {
-      res.json({ message });
+      res.json({ message })
     })
-    .catch((error) => next(error));
-});
+    .catch((error) => next(error))
+})
 
 // router.post("/update3Manager", (req, res, next) => {
 //   const { comment, finish_date_manager, process_id } = req.body;
@@ -594,34 +577,34 @@ router.post("/update2Manager", (req, res, next) => {
 // });
 
 router.post("/update4Admin", (req, res, next) => {
-  const { process_id } = req.body;
+  const { process_id } = req.body
   ProcessWorkTable.update4Admin({ process_id })
     .then(({ message }) => {
-      res.json({ message });
+      res.json({ message })
     })
-    .catch((error) => next(error));
-});
+    .catch((error) => next(error))
+})
 
 router.post("/update4Zahiral", (req, res, next) => {
-  const { process_id } = req.body;
+  const { process_id } = req.body
   ProcessWorkTable.update4Zahiral({ process_id })
     .then(({ message }) => {
-      res.json({ message });
+      res.json({ message })
     })
-    .catch((error) => next(error));
-});
+    .catch((error) => next(error))
+})
 
 router.post("/updateAdminSpecial", (req, res, next) => {
-  const { process_id, is_start_1_admin, is_done_1_admin } = req.body;
+  const { process_id, is_start_1_admin, is_done_1_admin } = req.body
   ProcessWorkTable.updateAdminSpecial({
     process_id,
     is_start_1_admin,
     is_done_1_admin,
   })
     .then(({ message }) => {
-      res.json({ message });
+      res.json({ message })
     })
-    .catch((error) => next(error));
-});
+    .catch((error) => next(error))
+})
 
-module.exports = router;
+module.exports = router

@@ -1,4 +1,4 @@
-const pool = require("../../databasePool");
+const pool = require("../../databasePool")
 
 class WorkAttendanceTable {
   static insert({ user_id, date, salary }) {
@@ -7,11 +7,11 @@ class WorkAttendanceTable {
         `INSERT INTO work_attendance(user_id, date, salary) VALUES($1, $2, $3)`,
         [user_id, date, salary],
         (error, response) => {
-          if (error) return reject(error);
-          resolve({ message: "success" });
+          if (error) return reject(error)
+          resolve({ message: "success" })
         }
-      );
-    });
+      )
+    })
   }
   static getWorkersByPj({ project_id }) {
     return new Promise((resolve, reject) => {
@@ -25,12 +25,12 @@ class WorkAttendanceTable {
         where work_attendance.project_id = $1`,
         [project_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
 }
 
-module.exports = WorkAttendanceTable;
+module.exports = WorkAttendanceTable

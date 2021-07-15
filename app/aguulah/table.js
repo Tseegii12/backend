@@ -1,4 +1,4 @@
-const pool = require("../../databasePool");
+const pool = require("../../databasePool")
 
 class AguulahTable {
   //admin
@@ -26,11 +26,11 @@ class AguulahTable {
           padan_dugaar,
         ],
         (error, response) => {
-          if (error) return reject(error);
-          resolve({ message: "success" });
+          if (error) return reject(error)
+          resolve({ message: "success" })
         }
-      );
-    });
+      )
+    })
   }
   static getAll() {
     return new Promise((resolve, reject) => {
@@ -43,11 +43,11 @@ class AguulahTable {
         INNER JOIN buy_place ON buy_place.id = aguulah.buy_place_id`,
         [],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static getAllFalse() {
     return new Promise((resolve, reject) => {
@@ -61,11 +61,11 @@ class AguulahTable {
         WHERE aguulah.is_checked=false`,
         [],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static getAllByPadan() {
     return new Promise((resolve, reject) => {
@@ -77,11 +77,11 @@ class AguulahTable {
         WHERE aguulah.is_checked = false`,
         [],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static getAllByPadanWithUser({ nyarav_id }) {
     return new Promise((resolve, reject) => {
@@ -93,11 +93,11 @@ class AguulahTable {
         WHERE aguulah.nyarav_id=$1 AND aguulah.is_checked = false`,
         [nyarav_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static getAllByPadanWithParam({ padan_dugaar, nyarav_id }) {
     return new Promise((resolve, reject) => {
@@ -111,11 +111,11 @@ class AguulahTable {
         WHERE aguulah.padan_dugaar = $1 AND aguulah.nyarav_id = $2`,
         [padan_dugaar, nyarav_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static update({ id }) {
     return new Promise((resolve, reject) => {
@@ -123,29 +123,23 @@ class AguulahTable {
         `UPDATE aguulah SET is_checked = true WHERE id = $1`,
         [id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve({ message: "success" });
+          if (error) return reject(error)
+          resolve({ message: "success" })
         }
-      );
-    });
+      )
+    })
   }
-  static updateByNyarav({
-    id,
-    material_too,
-    material_une,
-    date,
-    padan_dugaar,
-  }) {
+  static updateByNyarav({ id, material_too, material_une, date, padan_dugaar }) {
     return new Promise((resolve, reject) => {
       pool.query(
         `UPDATE aguulah SET material_too = $2, material_une = $3, date=$4, padan_dugaar = $5 WHERE id = $1`,
         [id, material_too, material_une, date, padan_dugaar],
         (error, response) => {
-          if (error) return reject(error);
-          resolve({ message: "success" });
+          if (error) return reject(error)
+          resolve({ message: "success" })
         }
-      );
-    });
+      )
+    })
   }
 
   static getUldegdelByPjMaterial({ project_id, material_id }) {
@@ -154,11 +148,11 @@ class AguulahTable {
         `SELECT get_baraa_uldegdel($2, $1)`,
         [project_id, material_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
 
   static getUldegdelByPj({ project_id }) {
@@ -174,11 +168,11 @@ class AguulahTable {
           inner join material on table3.a_material_id = material.id`,
         [project_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
 
   static getUldegdelAll() {
@@ -197,11 +191,11 @@ class AguulahTable {
           order by pj_name`,
         [],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
 
   //mobile
@@ -217,12 +211,12 @@ class AguulahTable {
         WHERE aguulah.project_id = $1`,
         [project_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
 }
 
-module.exports = AguulahTable;
+module.exports = AguulahTable

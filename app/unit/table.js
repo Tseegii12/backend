@@ -1,4 +1,4 @@
-const pool = require("../../databasePool");
+const pool = require("../../databasePool")
 
 class UnitTable {
   //admin
@@ -8,11 +8,11 @@ class UnitTable {
         `INSERT INTO unit(name, block_id, zagvar_id, m2, project_id, floor_id) VALUES($1, $2, $3, $4, $5, $6)`,
         [name, block_id, zagvar_id, m2, project_id, floor_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve({ message: "success" });
+          if (error) return reject(error)
+          resolve({ message: "success" })
         }
-      );
-    });
+      )
+    })
   }
   static getAll() {
     return new Promise((resolve, reject) => {
@@ -28,11 +28,11 @@ class UnitTable {
         ON unit.zagvar_id = table1.id`,
         [],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static update({ name, block_id, zagvar_id, m2, project_id, floor_id, id }) {
     return new Promise((resolve, reject) => {
@@ -40,20 +40,20 @@ class UnitTable {
         `UPDATE unit SET name=$1, block_id=$2, zagvar_id=$3, m2=$4, project_id=$5, floor_id=$6 WHERE id = $7`,
         [name, block_id, zagvar_id, m2, project_id, floor_id, id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve({ message: "success" });
+          if (error) return reject(error)
+          resolve({ message: "success" })
         }
-      );
-    });
+      )
+    })
   }
 
   static delete({ id }) {
     return new Promise((resolve, reject) => {
       pool.query(`DELETE FROM unit WHERE id = $1`, [id], (error, response) => {
-        if (error) return reject(error);
-        resolve({ message: "success" });
-      });
-    });
+        if (error) return reject(error)
+        resolve({ message: "success" })
+      })
+    })
   }
 
   //mobile
@@ -69,18 +69,13 @@ class UnitTable {
         WHERE zagvar_turul_id = $1 AND block_id = $2 AND project_id = $3`,
         [zagvar_turul_id, block_id, project_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
-  static getAllByTurulBlockFloor({
-    zagvar_turul_id,
-    block_id,
-    project_id,
-    floor_id,
-  }) {
+  static getAllByTurulBlockFloor({ zagvar_turul_id, block_id, project_id, floor_id }) {
     return new Promise((resolve, reject) => {
       pool.query(
         `SELECT unit.*, block.name AS block_name, project.name AS pj_name,
@@ -92,11 +87,11 @@ class UnitTable {
         WHERE zagvar_turul_id = $1 AND block_id = $2 AND project_id = $3 AND floor_id = $4`,
         [zagvar_turul_id, block_id, project_id, floor_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static getAllByManager({ manager_id }) {
     return new Promise((resolve, reject) => {
@@ -114,12 +109,12 @@ class UnitTable {
         WHERE manager_id = $1`,
         [manager_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
 }
 
-module.exports = UnitTable;
+module.exports = UnitTable

@@ -1,4 +1,4 @@
-const pool = require("../../databasePool");
+const pool = require("../../databasePool")
 
 class ProcessWorkViewTable {
   //admin
@@ -26,11 +26,11 @@ class ProcessWorkViewTable {
         left join users as admin on process_work.admin_id = admin.id`,
         [],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static getAllByManagerID({ manager_id }) {
     return new Promise((resolve, reject) => {
@@ -57,11 +57,11 @@ class ProcessWorkViewTable {
         WHERE process_work.manager_id = $1`,
         [manager_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static getAllTest() {
     return new Promise((resolve, reject) => {
@@ -96,11 +96,11 @@ class ProcessWorkViewTable {
         left join process_material on process_work.id = process_material.process_work_id`,
         [],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   //mobile
   static getProcessWorks({ unit_id, field_id }) {
@@ -124,11 +124,11 @@ class ProcessWorkViewTable {
         where process_work.unit_id = $1 and field_works.field_id = $2`,
         [unit_id, field_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static getProcessWorksSearch({ unit_id, field_id, manager_id, is_done }) {
     return new Promise((resolve, reject) => {
@@ -152,11 +152,11 @@ class ProcessWorkViewTable {
         process_work.manager_id = $3 and (process_work.is_done_1_admin = $4 or process_work.is_done_2_admin = $4)`,
         [unit_id, field_id, manager_id, is_done],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static getProcessWorks1({ project_id, block_id, type }) {
     return new Promise((resolve, reject) => {
@@ -184,11 +184,11 @@ class ProcessWorkViewTable {
         where unit.project_id = $1 and unit.block_id = $2 and field_works.zagvar_turul_id = $3`,
         [project_id, block_id, type],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static getProcessWorks2({ project_id, block_id, type, floor_id }) {
     return new Promise((resolve, reject) => {
@@ -216,11 +216,11 @@ class ProcessWorkViewTable {
         where unit.project_id = $1 and unit.block_id = $2 and field_works.zagvar_turul_id = $3 and unit.floor_id = $4`,
         [project_id, block_id, type, floor_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static getProcessWorks3({ manager_id, unit_id }) {
     return new Promise((resolve, reject) => {
@@ -245,11 +245,11 @@ class ProcessWorkViewTable {
         where manager_id = $1 and unit_id = $2`,
         [manager_id, unit_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static getProcessWorks3Search({ manager_id, unit_id, trueA, trueB }) {
     return new Promise((resolve, reject) => {
@@ -276,11 +276,11 @@ class ProcessWorkViewTable {
         (process_work.is_done_1_admin = $4 or process_work.is_done_2_admin = $4)`,
         [manager_id, unit_id, trueA, trueB],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static getAllByPWid({ process_work_id }) {
     return new Promise((resolve, reject) => {
@@ -317,12 +317,12 @@ class ProcessWorkViewTable {
           `,
         [process_work_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
 }
 
-module.exports = ProcessWorkViewTable;
+module.exports = ProcessWorkViewTable

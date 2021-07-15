@@ -1,4 +1,4 @@
-const pool = require("../../databasePool");
+const pool = require("../../databasePool")
 
 class TailanTable {
   static getRoomWorks({ field_room_id }) {
@@ -18,11 +18,11 @@ class TailanTable {
         inner join work on field_work.work_id = work.id`,
         [field_room_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static getFieldWorks({ field_id }) {
     return new Promise((resolve, reject) => {
@@ -38,11 +38,11 @@ class TailanTable {
         inner join work on field_work.work_id = work.id where field_work.field_id = $1`,
         [field_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static getFieldWorksByProcess({ floor_number, block_id, process_id }) {
     return new Promise((resolve, reject) => {
@@ -58,11 +58,11 @@ class TailanTable {
         inner join work on field_work.work_id = work.id`,
         [floor_number, block_id, process_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static getFieldWorksByProcessSub({ block_id, process_id }) {
     return new Promise((resolve, reject) => {
@@ -78,11 +78,11 @@ class TailanTable {
         inner join work on field_work.work_id = work.id`,
         [block_id, process_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static getBaraaUldegdel({ project_id, material_id }) {
     return new Promise((resolve, reject) => {
@@ -90,12 +90,12 @@ class TailanTable {
         `SELECT getbaraauldegdel($1, $2)`,
         [project_id, material_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
 }
 
-module.exports = TailanTable;
+module.exports = TailanTable

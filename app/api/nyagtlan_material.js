@@ -1,16 +1,10 @@
-const { Router } = require("express");
-const router = new Router();
-var moment = require("moment"); // require
-const NyagtlanMaterialTable = require("../nyagtlan_material/table");
+const { Router } = require("express")
+const router = new Router()
+var moment = require("moment") // require
+const NyagtlanMaterialTable = require("../nyagtlan_material/table")
 
 router.post("/insert", (req, res, next) => {
-  const {
-    process_work_id,
-    material_id,
-    material_too,
-    date,
-    nyarav_id,
-  } = req.body;
+  const { process_work_id, material_id, material_too, date, nyarav_id } = req.body
   NyagtlanMaterialTable.insert({
     process_work_id,
     material_id,
@@ -19,10 +13,10 @@ router.post("/insert", (req, res, next) => {
     nyarav_id,
   })
     .then(({ message }) => {
-      res.json({ message });
+      res.json({ message })
     })
-    .catch((error) => next(error));
-});
+    .catch((error) => next(error))
+})
 
 // router.post("/getMaterialByWorkId", (req, res, next) => {
 //   const { field_work_id } = req.body;
@@ -47,4 +41,4 @@ router.post("/insert", (req, res, next) => {
 //     .catch((error) => next(error));
 // });
 
-module.exports = router;
+module.exports = router

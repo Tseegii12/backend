@@ -1,4 +1,4 @@
-const pool = require("../../databasePool");
+const pool = require("../../databasePool")
 
 class ZagvarFieldTable {
   //admin
@@ -8,11 +8,11 @@ class ZagvarFieldTable {
         `INSERT INTO zagvar_field(zagvar_id, field_id) VALUES($1, $2)`,
         [zagvar_id, field_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve({ message: "success" });
+          if (error) return reject(error)
+          resolve({ message: "success" })
         }
-      );
-    });
+      )
+    })
   }
   static getAll() {
     return new Promise((resolve, reject) => {
@@ -25,11 +25,11 @@ class ZagvarFieldTable {
         INNER JOIN field ON zagvar_field.field_id = field.id`,
         [],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static update({ zagvar_id, field_id, id }) {
     return new Promise((resolve, reject) => {
@@ -37,24 +37,20 @@ class ZagvarFieldTable {
         `UPDATE zagvar_field SET zagvar_id=$1, field_id=$2 WHERE id=$3`,
         [zagvar_id, field_id, id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve({ message: "success" });
+          if (error) return reject(error)
+          resolve({ message: "success" })
         }
-      );
-    });
+      )
+    })
   }
 
   static delete({ id }) {
     return new Promise((resolve, reject) => {
-      pool.query(
-        `DELETE FROM zagvar_field WHERE id = $1`,
-        [id],
-        (error, response) => {
-          if (error) return reject(error);
-          resolve({ message: "success" });
-        }
-      );
-    });
+      pool.query(`DELETE FROM zagvar_field WHERE id = $1`, [id], (error, response) => {
+        if (error) return reject(error)
+        resolve({ message: "success" })
+      })
+    })
   }
 
   //mobile
@@ -67,11 +63,11 @@ class ZagvarFieldTable {
         WHERE zagvar_id = $1`,
         [zagvar_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows);
+          if (error) return reject(error)
+          resolve(response.rows)
         }
-      );
-    });
+      )
+    })
   }
   static getCount({ zagvar_id }) {
     return new Promise((resolve, reject) => {
@@ -79,12 +75,12 @@ class ZagvarFieldTable {
         `SELECT COUNT(*) FROM zagvar_field WHERE zagvar_id = $1`,
         [zagvar_id],
         (error, response) => {
-          if (error) return reject(error);
-          resolve(response.rows[0]);
+          if (error) return reject(error)
+          resolve(response.rows[0])
         }
-      );
-    });
+      )
+    })
   }
 }
 
-module.exports = ZagvarFieldTable;
+module.exports = ZagvarFieldTable
