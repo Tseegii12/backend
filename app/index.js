@@ -45,7 +45,7 @@ app.use(express.static(path.join(__dirname, "../../assets")));
 
 app.use(
   cors({
-    origin: ["http://103.119.92.48", "http://localhost:3000"],
+    origin: [process.env.CORS_ORIGIN],
     credentials: true,
   })
 );
