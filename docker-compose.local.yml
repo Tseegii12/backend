@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+  bill-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    volumes:
+      - ./src:/home/node/app/src
+    container_name: bill-api
+    depends_on:
+      - postgres
+    ports:
+      - "4000:3050"
+    command: npm run dev
+  postgres:
+    image: postgres:11.2-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: billadb
+    ports:
+      - "54321:5432"
+    volumes:
+      - bill-db-volume:/var/lib/postgresql/data
+volumes:
+  bill-db-volume:
