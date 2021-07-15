@@ -1,4 +1,4 @@
-const pool = require("../../databasePool")
+const pool = require("../databasePool")
 
 class WorkAttendanceTable {
   static insert({ user_id, date, salary }) {

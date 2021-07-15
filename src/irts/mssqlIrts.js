@@ -1,4 +1,4 @@
-const pool = require("../../databasePool")
+const pool = require("../databasePool")
 
 class MsSqlTable {
   static update({ date1, date2 }) {

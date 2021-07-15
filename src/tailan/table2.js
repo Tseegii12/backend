@@ -1,4 +1,4 @@
-const pool = require("../../databasePool")
+const pool = require("../databasePool")
 
 class TailanTable {
   static getRoomWorks({ field_room_id }) {

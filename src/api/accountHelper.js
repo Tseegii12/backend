@@ -1,5 +1,5 @@
 const userTable = require("../account/table")
-const { APP_SECRET } = require("../../secrets")
+const { APP_SECRET } = require("../secrets")
 const jwt = require("jsonwebtoken")
 
 const setToken = ({ user_name, password, res }) => {

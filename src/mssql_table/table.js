@@ -1,4 +1,4 @@
-const pool = require("../../databasePool")
+const pool = require("../databasePool")
 var format = require("pg-format")
 
 class MssqlTable {

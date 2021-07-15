@@ -1,4 +1,4 @@
-const pool = require("../../databasePool")
+const pool = require("../databasePool")
 
 class customerTable {
   static storeUser({ user_name, passwordHash, name, type_id, project_id }) {

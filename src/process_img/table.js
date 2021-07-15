@@ -1,4 +1,4 @@
-const pool = require("../../databasePool")
+const pool = require("../databasePool")
 
 class ProcessImgTable {
   static insert({ img_url, process_id }) {

@@ -9,7 +9,9 @@ router.get("/getUsers", (req, res, next) => {
     .then((result) => {
       res.json(result)
     })
-    .catch((error) => next(error))
+    .catch((error) => {
+      next(error)
+    })
 })
 
 router.get("/getUsersNotAdmin", (req, res, next) => {

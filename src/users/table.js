@@ -1,4 +1,4 @@
-const pool = require("../../databasePool")
+const pool = require("../databasePool")
 
 class UsersTable {
   //admin
@@ -8,6 +8,9 @@ class UsersTable {
         `SELECT users.*, user_type.name AS user_type_name FROM users INNER JOIN user_type ON users.type_id = user_type.id`,
         [],
         (error, response) => {
+          console.log("----------------------------")
+          console.log(error, response)
+          console.log("----------------------------")
           if (error) {
             return reject(error)
           }
