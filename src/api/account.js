@@ -89,9 +89,8 @@ router.post("/update", (req, res, next) => {
       .then(({ authenticated }) => {
         if (authenticated) {
           if (password !== "") {
-            console.log("1", password)
             let passwordHash = hash(password)
-            console.log("2", passwordHash)
+
             UserTable.updatePass({
               user_name,
               name,

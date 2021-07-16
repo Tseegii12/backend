@@ -4,7 +4,6 @@ var format = require("pg-format")
 class IrtsTable {
   //admin
   static insert({ worker_id, tsalin, tuluv_id, data }) {
-    // console.log("1", data);
     let dataValue = []
     data.forEach((item) => {
       let innerData = []
@@ -15,7 +14,6 @@ class IrtsTable {
       innerData.push(item.huruu_hee)
       dataValue.push(innerData)
     })
-    // console.log("2", dataValue);
     return new Promise((resolve, reject) => {
       // resolve({ message: "test" });
       pool.query(

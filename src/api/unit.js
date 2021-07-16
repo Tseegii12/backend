@@ -58,7 +58,6 @@ router.post("/getAllByTurulBlock", (req, res, next) => {
 
 router.post("/getAllByTurulBlockFloor", (req, res, next) => {
   const { zagvar_turul_id, block_id, project_id, floor_id } = req.body
-  console.log("?", req.body)
   unitTable
     .getAllByTurulBlockFloor({
       zagvar_turul_id,
