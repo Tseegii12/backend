@@ -43,10 +43,6 @@ const app = express()
 console.log("PATH: ", path.join(__dirname, "../../"))
 app.use(express.static(path.join(__dirname, "../../assets")))
 
-console.log("----------------------------")
-console.log(process.env.CORS_ORIGIN)
-console.log("----------------------------")
-
 app.use(
   cors({
     origin: [process.env.CORS_ORIGIN],
