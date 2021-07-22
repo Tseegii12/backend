@@ -38,6 +38,8 @@ const irtsTuluvRouter = require("./api/irts_tuluv")
 const queryIrtsRouter = require("./api/queryIrts")
 const mssqlRouter = require("./api/mssql")
 
+const requestRoute = require("./api/request")
+
 const app = express()
 
 console.log("PATH: ", path.join(__dirname, "../../"))
@@ -45,7 +47,7 @@ app.use(express.static(path.join(__dirname, "../../assets")))
 
 app.use(
   cors({
-    origin: [process.env.CORS_ORIGIN],
+    origin: "*",
     credentials: true,
   })
 )
@@ -62,6 +64,20 @@ app.use(function (req, res, next) {
 app.use(bodyParser.json({ limit: "50mb" }))
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }))
 app.use(cookieParser())
+
+const checkToken = (req, res, next) => {
+  const header = req.headers["authorization"];
+
+  if (typeof header !== "undefined") {
+    const bearer = header.split(" ")
+    const token = bearer[1]
+
+    req.token = token
+    next()
+  } else {
+      res.status(403).json({ message: "Хандах эрхгүй байна" })
+  }
+}
 
 //routes
 app.use("/account", accountRouter)
@@ -96,6 +112,12 @@ app.use("/irts", irtsRouter)
 app.use("/irtsTuluv", irtsTuluvRouter)
 app.use("/queryIrts", queryIrtsRouter)
 app.use("/mssql", mssqlRouter)
+
+app.use("/request", checkToken, requestRoute)
+
+app.get("*", function(req, res){
+  res.status(404).json({ success: false, message: "404 route not found" })
+})
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500
