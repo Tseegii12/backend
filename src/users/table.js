@@ -5,7 +5,7 @@ class UsersTable {
   static getUsers() {
     return new Promise((resolve, reject) => {
       pool.query(
-        `SELECT users.*, user_type.name AS user_type_name FROM users INNER JOIN user_type ON users.type_id = user_type.id`,
+        `SELECT users.id, users.user_name, users.name, users.type_id, users.project_id, user_type.name AS user_type_name FROM users INNER JOIN user_type ON users.type_id = user_type.id`,
         [],
         (error, response) => {
           if (error) {

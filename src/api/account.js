@@ -42,7 +42,7 @@ router.post("/login", (req, res, next) => {
 
         return setToken({ user_name, password, res })
       } else {
-        res.json({ message: "Нэвтрэх нэр, нууц үг буруу байна!", error: 409 })
+        res.status(401).json({ message: "Нэвтрэх нэр эсвэл нууц үг буруу байна!", error: 401 })
       }
     })
     .catch((error) => next(error))
@@ -72,11 +72,11 @@ router.post("/profile", (req, res, next) => {
     authenticatedAccount(token)
       .then(({ users, authenticated }) => {
         if (authenticated) res.json({ users, token: token })
-        else res.json({ message: "Баталгаажуулалт буруу байна", error: 409 })
+        else res.status(400).json({ message: "Баталгаажуулалт буруу байна", error: 400 })
       })
       .catch((error) => next(error))
   } else {
-    res.json({ message: "Системд алдаа гарсан", error: 404 })
+    res.status(500).json({ message: "Системд алдаа гарсан", error: 500 })
   }
 })
 
@@ -116,11 +116,11 @@ router.post("/update", (req, res, next) => {
               })
               .catch((error) => next(error))
           }
-        } else res.json({ message: "Баталгаажуулалт буруу байна", error: 409 })
+        } else res.json({ message: "Баталгаажуулалт буруу байна", error: 400 })
       })
       .catch((error) => next(error))
   } else {
-    res.json({ message: "Системд алдаа гарсан", error: 404 })
+    res.status(500).json({ message: "Системд алдаа гарсан", error: 500 })
   }
 })
 
@@ -131,7 +131,6 @@ router.post("/delete", (req, res, next) => {
     authenticatedAccount(token)
       .then(({ authenticated }) => {
         if (authenticated) {
-          console.log("?")
           UserTable.delete({
             id,
           })
@@ -142,13 +141,13 @@ router.post("/delete", (req, res, next) => {
               res.json({ error: error.code })
               next(error)
             })
-        } else res.json({ message: "Баталгаажуулалт буруу байна", error: 409 })
+        } else res.status(400).json({ message: "Баталгаажуулалт буруу байна", error: 400 })
       })
       .catch((error) => {
         next(error)
       })
   } else {
-    res.json({ message: "Системд алдаа гарсан", error: 404 })
+    res.status(500).json({ message: "Системд алдаа гарсан", error: 500 })
   }
 })
 

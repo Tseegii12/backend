@@ -5,8 +5,8 @@ const MaterialTable = require("../material/table")
 router.post("/insert", (req, res, next) => {
   const { name, material_unit, code, material_type_id } = req.body
   MaterialTable.insert({ name, material_unit, code, material_type_id })
-    .then(({ message }) => {
-      res.json({ message })
+    .then((response) => {
+      res.status(200).json(response)
     })
     .catch((error) => next(error))
 })
@@ -52,5 +52,12 @@ router.get("/getAllForPicker", (req, res, next) => {
     })
     .catch((error) => next(error))
 })
+
+router.get("/newCode", (req, res,next) => {
+    MaterialTable.generateCode()
+        .then((result) => {
+            res.status(201).json(result[0])
+        }).catch((error) => next(error))
+});
 
 module.exports = router

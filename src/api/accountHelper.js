@@ -46,4 +46,33 @@ const authenticatedAccount = (token) => {
   })
 }
 
-module.exports = { setToken, deleteToken, authenticatedAccount }
+const getCurrentUser = (token) => {
+  return new Promise((resolve, reject) => {
+    if (token) {
+      const { user_name } = jwt.decode(token, APP_SECRET)
+
+      userTable.getUserByName({ user_name })
+          .then((user) => {
+            if (user) {
+              resolve({
+                user:{
+                  id: user.users.id,
+                  name: user.users.name
+                }
+              })
+            } else {
+              resolve({
+                user: null
+              })
+            }
+          })
+          .catch((error) => reject(error))
+    } else {
+      const error = new Error("403 Forbidden")
+      error.statusCode = 403
+      return reject(error)
+    }
+  })
+}
+
+module.exports = { setToken, deleteToken, authenticatedAccount, getCurrentUser }

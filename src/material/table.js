@@ -9,10 +9,21 @@ class MaterialTable {
         [name, material_unit, code, material_type_id],
         (error, response) => {
           if (error) return reject(error)
-          resolve({ message: "success" })
+
+            resolve({ message: "success" })
         }
       )
     })
+  }
+
+  static saveUsedCode(code) {
+      return new Promise((resolve, reject) => {
+          pool.query(`INSERT INTO used_material_codes(code) VALUES ($1)`, [code], (error, res) => {
+              if (error) return reject(error)
+
+              resolve({ response: { success: true, message: "Материалыг хадгаллаа." } })
+          })
+      })
   }
 
   static getAll() {
@@ -52,6 +63,16 @@ class MaterialTable {
     })
   }
   //mobile
+
+  static generateCode() {
+    return new Promise((resolve, reject) => {
+      pool.query("SELECT public.new_material_code()", [], (error, result) => {
+        if (error) reject(error)
+
+        resolve(result.rows)
+      })
+    })
+  }
 }
 
 module.exports = MaterialTable
