@@ -14,3 +14,7 @@ docker-compose up -d
 docker-compose ps
 docker-compose restart migration
 ```
+
+## Styleguide
+
+Always prefer async/await over callbacks, or .then promise

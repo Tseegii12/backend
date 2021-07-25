@@ -66,7 +66,7 @@ app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }))
 app.use(cookieParser())
 
 const checkToken = (req, res, next) => {
-  const header = req.headers["authorization"];
+  const header = req.headers["authorization"]
 
   if (typeof header !== "undefined") {
     const bearer = header.split(" ")
@@ -75,7 +75,7 @@ const checkToken = (req, res, next) => {
     req.token = token
     next()
   } else {
-      res.status(403).json({ message: "Хандах эрхгүй байна" })
+    res.status(403).json({ message: "Хандах эрхгүй байна" })
   }
 }
 
@@ -112,10 +112,9 @@ app.use("/irts", irtsRouter)
 app.use("/irtsTuluv", irtsTuluvRouter)
 app.use("/queryIrts", queryIrtsRouter)
 app.use("/mssql", mssqlRouter)
-
 app.use("/request", checkToken, requestRoute)
 
-app.get("*", function(req, res){
+app.get("*", function (req, res) {
   res.status(404).json({ success: false, message: "404 route not found" })
 })
 
