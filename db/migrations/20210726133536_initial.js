@@ -1,8 +1,8 @@
-exports.up = function (knex) {
-  knex.schema.raw(schema)
+exports.up = async function (knex) {
+  return knex.schema.raw(schema)
 }
 
-exports.down = function (knex) {}
+exports.down = async function (knex) {}
 
 const schema = `
 --
@@ -38,7 +38,6 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
 --
--- Name: get_baraa_uldegdel(integer, integer); Type: FUNCTION; Schema: public; Owner: node_user
 --
 
 CREATE FUNCTION public.get_baraa_uldegdel(material_id_in integer, project_id_in integer) RETURNS integer
@@ -60,10 +59,7 @@ end;
 $$;
 
 
-ALTER FUNCTION public.get_baraa_uldegdel(material_id_in integer, project_id_in integer) OWNER TO node_user;
-
 --
--- Name: getbaraauldegdel(integer, integer); Type: FUNCTION; Schema: public; Owner: node_user
 --
 
 CREATE FUNCTION public.getbaraauldegdel(project_id_in integer, material_id_in integer) RETURNS integer
@@ -98,10 +94,7 @@ end;
 $$;
 
 
-ALTER FUNCTION public.getbaraauldegdel(project_id_in integer, material_id_in integer) OWNER TO node_user;
-
 --
--- Name: new_material_code(); Type: FUNCTION; Schema: public; Owner: node_user
 --
 
 CREATE FUNCTION public.new_material_code() RETURNS integer
@@ -124,10 +117,7 @@ declare
 $$;
 
 
-ALTER FUNCTION public.new_material_code() OWNER TO node_user;
-
 --
--- Name: random_huruu_hee(); Type: FUNCTION; Schema: public; Owner: node_user
 --
 
 CREATE FUNCTION public.random_huruu_hee() RETURNS integer
@@ -148,14 +138,11 @@ end;
 $$;
 
 
-ALTER FUNCTION public.random_huruu_hee() OWNER TO node_user;
-
 SET default_tablespace = '';
 
 SET default_with_oids = false;
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.users (
@@ -168,10 +155,7 @@ CREATE TABLE public.users (
 );
 
 
-ALTER TABLE public.users OWNER TO node_user;
-
 --
--- Name: accounts_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.accounts_id_seq
@@ -183,17 +167,13 @@ CREATE SEQUENCE public.accounts_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.accounts_id_seq OWNER TO node_user;
-
 --
--- Name: accounts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.accounts_id_seq OWNED BY public.users.id;
 
 
 --
--- Name: aguulah; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.aguulah (
@@ -210,10 +190,8 @@ CREATE TABLE public.aguulah (
 );
 
 
-ALTER TABLE public.aguulah OWNER TO node_user;
 
 --
--- Name: aguulah_log; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.aguulah_log (
@@ -229,10 +207,8 @@ CREATE TABLE public.aguulah_log (
 );
 
 
-ALTER TABLE public.aguulah_log OWNER TO node_user;
 
 --
--- Name: aguulah_place; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.aguulah_place (
@@ -241,10 +217,8 @@ CREATE TABLE public.aguulah_place (
 );
 
 
-ALTER TABLE public.aguulah_place OWNER TO node_user;
 
 --
--- Name: aguulah_place_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.aguulah_place_id_seq
@@ -256,17 +230,14 @@ CREATE SEQUENCE public.aguulah_place_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.aguulah_place_id_seq OWNER TO node_user;
 
 --
--- Name: aguulah_place_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.aguulah_place_id_seq OWNED BY public.aguulah_place.id;
 
 
 --
--- Name: block; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.block (
@@ -275,10 +246,8 @@ CREATE TABLE public.block (
 );
 
 
-ALTER TABLE public.block OWNER TO node_user;
 
 --
--- Name: block_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.block_id_seq
@@ -290,17 +259,14 @@ CREATE SEQUENCE public.block_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.block_id_seq OWNER TO node_user;
 
 --
--- Name: block_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.block_id_seq OWNED BY public.block.id;
 
 
 --
--- Name: buy_place; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.buy_place (
@@ -310,10 +276,8 @@ CREATE TABLE public.buy_place (
 );
 
 
-ALTER TABLE public.buy_place OWNER TO node_user;
 
 --
--- Name: buy_place_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.buy_place_id_seq
@@ -325,17 +289,14 @@ CREATE SEQUENCE public.buy_place_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.buy_place_id_seq OWNER TO node_user;
 
 --
--- Name: buy_place_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.buy_place_id_seq OWNED BY public.buy_place.id;
 
 
 --
--- Name: field; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.field (
@@ -344,10 +305,8 @@ CREATE TABLE public.field (
 );
 
 
-ALTER TABLE public.field OWNER TO node_user;
 
 --
--- Name: field_material; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.field_material (
@@ -360,10 +319,8 @@ CREATE TABLE public.field_material (
 );
 
 
-ALTER TABLE public.field_material OWNER TO node_user;
 
 --
--- Name: field_material_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.field_material_id_seq
@@ -375,17 +332,14 @@ CREATE SEQUENCE public.field_material_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.field_material_id_seq OWNER TO node_user;
 
 --
--- Name: field_material_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.field_material_id_seq OWNED BY public.field_material.id;
 
 
 --
--- Name: field_room_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.field_room_id_seq
@@ -397,17 +351,14 @@ CREATE SEQUENCE public.field_room_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.field_room_id_seq OWNER TO node_user;
 
 --
--- Name: field_room_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.field_room_id_seq OWNED BY public.field.id;
 
 
 --
--- Name: zagvar; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.zagvar (
@@ -417,10 +368,8 @@ CREATE TABLE public.zagvar (
 );
 
 
-ALTER TABLE public.zagvar OWNER TO node_user;
 
 --
--- Name: field_type_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.field_type_id_seq
@@ -432,17 +381,14 @@ CREATE SEQUENCE public.field_type_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.field_type_id_seq OWNER TO node_user;
 
 --
--- Name: field_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.field_type_id_seq OWNED BY public.zagvar.id;
 
 
 --
--- Name: field_work; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.field_work (
@@ -455,10 +401,8 @@ CREATE TABLE public.field_work (
 );
 
 
-ALTER TABLE public.field_work OWNER TO node_user;
 
 --
--- Name: floor; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.floor (
@@ -467,10 +411,8 @@ CREATE TABLE public.floor (
 );
 
 
-ALTER TABLE public.floor OWNER TO node_user;
 
 --
--- Name: floor_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.floor_id_seq
@@ -482,17 +424,14 @@ CREATE SEQUENCE public.floor_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.floor_id_seq OWNER TO node_user;
 
 --
--- Name: floor_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.floor_id_seq OWNED BY public.floor.id;
 
 
 --
--- Name: hemjee; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.hemjee (
@@ -501,10 +440,8 @@ CREATE TABLE public.hemjee (
 );
 
 
-ALTER TABLE public.hemjee OWNER TO node_user;
 
 --
--- Name: hemjee_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.hemjee_id_seq
@@ -516,17 +453,14 @@ CREATE SEQUENCE public.hemjee_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.hemjee_id_seq OWNER TO node_user;
 
 --
--- Name: hemjee_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.hemjee_id_seq OWNED BY public.hemjee.id;
 
 
 --
--- Name: user_type; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.user_type (
@@ -535,10 +469,8 @@ CREATE TABLE public.user_type (
 );
 
 
-ALTER TABLE public.user_type OWNER TO node_user;
 
 --
--- Name: ingredients_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.ingredients_id_seq
@@ -550,17 +482,14 @@ CREATE SEQUENCE public.ingredients_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.ingredients_id_seq OWNER TO node_user;
 
 --
--- Name: ingredients_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.ingredients_id_seq OWNED BY public.user_type.id;
 
 
 --
--- Name: irts; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.irts (
@@ -575,10 +504,8 @@ CREATE TABLE public.irts (
 );
 
 
-ALTER TABLE public.irts OWNER TO node_user;
 
 --
--- Name: irts_date; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.irts_date (
@@ -594,10 +521,8 @@ CREATE TABLE public.irts_date (
 );
 
 
-ALTER TABLE public.irts_date OWNER TO node_user;
 
 --
--- Name: irts_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.irts_id_seq
@@ -609,17 +534,14 @@ CREATE SEQUENCE public.irts_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.irts_id_seq OWNER TO node_user;
 
 --
--- Name: irts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.irts_id_seq OWNED BY public.irts.id;
 
 
 --
--- Name: irts_total; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.irts_total (
@@ -633,10 +555,8 @@ CREATE TABLE public.irts_total (
 );
 
 
-ALTER TABLE public.irts_total OWNER TO node_user;
 
 --
--- Name: irts_tuluv; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.irts_tuluv (
@@ -645,10 +565,8 @@ CREATE TABLE public.irts_tuluv (
 );
 
 
-ALTER TABLE public.irts_tuluv OWNER TO node_user;
 
 --
--- Name: irts_tuluv_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.irts_tuluv_id_seq
@@ -660,17 +578,14 @@ CREATE SEQUENCE public.irts_tuluv_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.irts_tuluv_id_seq OWNER TO node_user;
 
 --
--- Name: irts_tuluv_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.irts_tuluv_id_seq OWNED BY public.irts_tuluv.id;
 
 
 --
--- Name: material; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.material (
@@ -682,10 +597,8 @@ CREATE TABLE public.material (
 );
 
 
-ALTER TABLE public.material OWNER TO node_user;
 
 --
--- Name: material_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.material_id_seq
@@ -697,17 +610,14 @@ CREATE SEQUENCE public.material_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.material_id_seq OWNER TO node_user;
 
 --
--- Name: material_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.material_id_seq OWNED BY public.material.id;
 
 
 --
--- Name: material_type; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.material_type (
@@ -716,10 +626,8 @@ CREATE TABLE public.material_type (
 );
 
 
-ALTER TABLE public.material_type OWNER TO node_user;
 
 --
--- Name: material_type_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.material_type_id_seq
@@ -731,17 +639,14 @@ CREATE SEQUENCE public.material_type_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.material_type_id_seq OWNER TO node_user;
 
 --
--- Name: material_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.material_type_id_seq OWNED BY public.material_type.id;
 
 
 --
--- Name: material_ware_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.material_ware_id_seq
@@ -753,17 +658,14 @@ CREATE SEQUENCE public.material_ware_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.material_ware_id_seq OWNER TO node_user;
 
 --
--- Name: material_ware_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.material_ware_id_seq OWNED BY public.aguulah.id;
 
 
 --
--- Name: mssql_table; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.mssql_table (
@@ -773,10 +675,8 @@ CREATE TABLE public.mssql_table (
 );
 
 
-ALTER TABLE public.mssql_table OWNER TO node_user;
 
 --
--- Name: nyagtlan_material; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.nyagtlan_material (
@@ -789,10 +689,8 @@ CREATE TABLE public.nyagtlan_material (
 );
 
 
-ALTER TABLE public.nyagtlan_material OWNER TO node_user;
 
 --
--- Name: nyagtlan_material_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.nyagtlan_material_id_seq
@@ -804,17 +702,14 @@ CREATE SEQUENCE public.nyagtlan_material_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.nyagtlan_material_id_seq OWNER TO node_user;
 
 --
--- Name: nyagtlan_material_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.nyagtlan_material_id_seq OWNED BY public.nyagtlan_material.id;
 
 
 --
--- Name: work_type; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.work_type (
@@ -823,10 +718,8 @@ CREATE TABLE public.work_type (
 );
 
 
-ALTER TABLE public.work_type OWNER TO node_user;
 
 --
--- Name: process_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.process_id_seq
@@ -838,17 +731,14 @@ CREATE SEQUENCE public.process_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.process_id_seq OWNER TO node_user;
 
 --
--- Name: process_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.process_id_seq OWNED BY public.work_type.id;
 
 
 --
--- Name: process_img; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.process_img (
@@ -858,10 +748,8 @@ CREATE TABLE public.process_img (
 );
 
 
-ALTER TABLE public.process_img OWNER TO node_user;
 
 --
--- Name: process_material; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.process_material (
@@ -874,10 +762,8 @@ CREATE TABLE public.process_material (
 );
 
 
-ALTER TABLE public.process_material OWNER TO node_user;
 
 --
--- Name: process_work; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.process_work (
@@ -900,10 +786,8 @@ CREATE TABLE public.process_work (
 );
 
 
-ALTER TABLE public.process_work OWNER TO node_user;
 
 --
--- Name: project; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.project (
@@ -912,10 +796,8 @@ CREATE TABLE public.project (
 );
 
 
-ALTER TABLE public.project OWNER TO node_user;
 
 --
--- Name: project_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.project_id_seq
@@ -927,17 +809,14 @@ CREATE SEQUENCE public.project_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.project_id_seq OWNER TO node_user;
 
 --
--- Name: project_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.project_id_seq OWNED BY public.project.id;
 
 
 --
--- Name: request_replies; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.request_replies (
@@ -949,10 +828,8 @@ CREATE TABLE public.request_replies (
 );
 
 
-ALTER TABLE public.request_replies OWNER TO node_user;
 
 --
--- Name: request_replies_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.request_replies_id_seq
@@ -964,17 +841,14 @@ CREATE SEQUENCE public.request_replies_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.request_replies_id_seq OWNER TO node_user;
 
 --
--- Name: request_replies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.request_replies_id_seq OWNED BY public.request_replies.id;
 
 
 --
--- Name: request_users; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.request_users (
@@ -983,10 +857,8 @@ CREATE TABLE public.request_users (
 );
 
 
-ALTER TABLE public.request_users OWNER TO node_user;
 
 --
--- Name: requests; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.requests (
@@ -997,10 +869,8 @@ CREATE TABLE public.requests (
 );
 
 
-ALTER TABLE public.requests OWNER TO node_user;
 
 --
--- Name: requests_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.requests_id_seq
@@ -1012,17 +882,14 @@ CREATE SEQUENCE public.requests_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.requests_id_seq OWNER TO node_user;
 
 --
--- Name: requests_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.requests_id_seq OWNED BY public.requests.id;
 
 
 --
--- Name: unit; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.unit (
@@ -1036,10 +903,8 @@ CREATE TABLE public.unit (
 );
 
 
-ALTER TABLE public.unit OWNER TO node_user;
 
 --
--- Name: room_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.room_id_seq
@@ -1051,17 +916,14 @@ CREATE SEQUENCE public.room_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.room_id_seq OWNER TO node_user;
 
 --
--- Name: room_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.room_id_seq OWNED BY public.unit.id;
 
 
 --
--- Name: room_work_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.room_work_id_seq
@@ -1073,17 +935,14 @@ CREATE SEQUENCE public.room_work_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.room_work_id_seq OWNER TO node_user;
 
 --
--- Name: room_work_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.room_work_id_seq OWNED BY public.field_work.id;
 
 
 --
--- Name: tools_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.tools_id_seq
@@ -1095,27 +954,22 @@ CREATE SEQUENCE public.tools_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.tools_id_seq OWNER TO node_user;
 
 --
--- Name: tools_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.tools_id_seq OWNED BY public.process_work.id;
 
 
 --
--- Name: total_irts; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.total_irts (
 );
 
 
-ALTER TABLE public.total_irts OWNER TO node_user;
 
 --
--- Name: work; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.work (
@@ -1125,10 +979,8 @@ CREATE TABLE public.work (
 );
 
 
-ALTER TABLE public.work OWNER TO node_user;
 
 --
--- Name: work_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.work_id_seq
@@ -1140,17 +992,14 @@ CREATE SEQUENCE public.work_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.work_id_seq OWNER TO node_user;
 
 --
--- Name: work_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.work_id_seq OWNED BY public.work.id;
 
 
 --
--- Name: work_material_add_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.work_material_add_id_seq
@@ -1162,17 +1011,14 @@ CREATE SEQUENCE public.work_material_add_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.work_material_add_id_seq OWNER TO node_user;
 
 --
--- Name: work_material_add_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.work_material_add_id_seq OWNED BY public.process_material.id;
 
 
 --
--- Name: work_material_tool_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.work_material_tool_id_seq
@@ -1184,17 +1030,14 @@ CREATE SEQUENCE public.work_material_tool_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.work_material_tool_id_seq OWNER TO node_user;
 
 --
--- Name: work_material_tool_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.work_material_tool_id_seq OWNED BY public.process_img.id;
 
 
 --
--- Name: worker; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.worker (
@@ -1216,10 +1059,8 @@ CREATE TABLE public.worker (
 );
 
 
-ALTER TABLE public.worker OWNER TO node_user;
 
 --
--- Name: worker_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.worker_id_seq
@@ -1231,17 +1072,14 @@ CREATE SEQUENCE public.worker_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.worker_id_seq OWNER TO node_user;
 
 --
--- Name: worker_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.worker_id_seq OWNED BY public.worker.id;
 
 
 --
--- Name: zagvar_field; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.zagvar_field (
@@ -1251,10 +1089,8 @@ CREATE TABLE public.zagvar_field (
 );
 
 
-ALTER TABLE public.zagvar_field OWNER TO node_user;
 
 --
--- Name: zagvar_field_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.zagvar_field_id_seq
@@ -1266,17 +1102,14 @@ CREATE SEQUENCE public.zagvar_field_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.zagvar_field_id_seq OWNER TO node_user;
 
 --
--- Name: zagvar_field_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.zagvar_field_id_seq OWNED BY public.zagvar_field.id;
 
 
 --
--- Name: zagvar_turul; Type: TABLE; Schema: public; Owner: node_user
 --
 
 CREATE TABLE public.zagvar_turul (
@@ -1285,10 +1118,8 @@ CREATE TABLE public.zagvar_turul (
 );
 
 
-ALTER TABLE public.zagvar_turul OWNER TO node_user;
 
 --
--- Name: zagvar_turul_id_seq; Type: SEQUENCE; Schema: public; Owner: node_user
 --
 
 CREATE SEQUENCE public.zagvar_turul_id_seq
@@ -1300,220 +1131,188 @@ CREATE SEQUENCE public.zagvar_turul_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.zagvar_turul_id_seq OWNER TO node_user;
 
 --
--- Name: zagvar_turul_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: node_user
 --
 
 ALTER SEQUENCE public.zagvar_turul_id_seq OWNED BY public.zagvar_turul.id;
 
 
 --
--- Name: aguulah id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.aguulah ALTER COLUMN id SET DEFAULT nextval('public.material_ware_id_seq'::regclass);
 
 
 --
--- Name: aguulah_place id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.aguulah_place ALTER COLUMN id SET DEFAULT nextval('public.aguulah_place_id_seq'::regclass);
 
 
 --
--- Name: block id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.block ALTER COLUMN id SET DEFAULT nextval('public.block_id_seq'::regclass);
 
 
 --
--- Name: buy_place id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.buy_place ALTER COLUMN id SET DEFAULT nextval('public.buy_place_id_seq'::regclass);
 
 
 --
--- Name: field id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.field ALTER COLUMN id SET DEFAULT nextval('public.field_room_id_seq'::regclass);
 
 
 --
--- Name: field_material id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.field_material ALTER COLUMN id SET DEFAULT nextval('public.field_material_id_seq'::regclass);
 
 
 --
--- Name: field_work id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.field_work ALTER COLUMN id SET DEFAULT nextval('public.room_work_id_seq'::regclass);
 
 
 --
--- Name: floor id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.floor ALTER COLUMN id SET DEFAULT nextval('public.floor_id_seq'::regclass);
 
 
 --
--- Name: hemjee id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.hemjee ALTER COLUMN id SET DEFAULT nextval('public.hemjee_id_seq'::regclass);
 
 
 --
--- Name: irts id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.irts ALTER COLUMN id SET DEFAULT nextval('public.irts_id_seq'::regclass);
 
 
 --
--- Name: irts_tuluv id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.irts_tuluv ALTER COLUMN id SET DEFAULT nextval('public.irts_tuluv_id_seq'::regclass);
 
 
 --
--- Name: material id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.material ALTER COLUMN id SET DEFAULT nextval('public.material_id_seq'::regclass);
 
 
 --
--- Name: material_type id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.material_type ALTER COLUMN id SET DEFAULT nextval('public.material_type_id_seq'::regclass);
 
 
 --
--- Name: nyagtlan_material id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.nyagtlan_material ALTER COLUMN id SET DEFAULT nextval('public.nyagtlan_material_id_seq'::regclass);
 
 
 --
--- Name: process_img id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.process_img ALTER COLUMN id SET DEFAULT nextval('public.work_material_tool_id_seq'::regclass);
 
 
 --
--- Name: process_material id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.process_material ALTER COLUMN id SET DEFAULT nextval('public.work_material_add_id_seq'::regclass);
 
 
 --
--- Name: process_work id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.process_work ALTER COLUMN id SET DEFAULT nextval('public.tools_id_seq'::regclass);
 
 
 --
--- Name: project id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.project ALTER COLUMN id SET DEFAULT nextval('public.project_id_seq'::regclass);
 
 
 --
--- Name: request_replies id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.request_replies ALTER COLUMN id SET DEFAULT nextval('public.request_replies_id_seq'::regclass);
 
 
 --
--- Name: requests id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.requests ALTER COLUMN id SET DEFAULT nextval('public.requests_id_seq'::regclass);
 
 
 --
--- Name: unit id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.unit ALTER COLUMN id SET DEFAULT nextval('public.room_id_seq'::regclass);
 
 
 --
--- Name: user_type id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.user_type ALTER COLUMN id SET DEFAULT nextval('public.ingredients_id_seq'::regclass);
 
 
 --
--- Name: users id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.accounts_id_seq'::regclass);
 
 
 --
--- Name: work id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.work ALTER COLUMN id SET DEFAULT nextval('public.work_id_seq'::regclass);
 
 
 --
--- Name: work_type id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.work_type ALTER COLUMN id SET DEFAULT nextval('public.process_id_seq'::regclass);
 
 
 --
--- Name: worker id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.worker ALTER COLUMN id SET DEFAULT nextval('public.worker_id_seq'::regclass);
 
 
 --
--- Name: zagvar id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.zagvar ALTER COLUMN id SET DEFAULT nextval('public.field_type_id_seq'::regclass);
 
 
 --
--- Name: zagvar_field id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.zagvar_field ALTER COLUMN id SET DEFAULT nextval('public.zagvar_field_id_seq'::regclass);
 
 
 --
--- Name: zagvar_turul id; Type: DEFAULT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.zagvar_turul ALTER COLUMN id SET DEFAULT nextval('public.zagvar_turul_id_seq'::regclass);
 
 
 --
--- Name: users accounts_email_key; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.users
@@ -1521,7 +1320,6 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: users accounts_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.users
@@ -1529,7 +1327,6 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: aguulah_place aguulah_place_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.aguulah_place
@@ -1537,7 +1334,6 @@ ALTER TABLE ONLY public.aguulah_place
 
 
 --
--- Name: block block_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.block
@@ -1545,7 +1341,6 @@ ALTER TABLE ONLY public.block
 
 
 --
--- Name: buy_place buy_place_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.buy_place
@@ -1553,7 +1348,6 @@ ALTER TABLE ONLY public.buy_place
 
 
 --
--- Name: field_material field_material_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.field_material
@@ -1561,7 +1355,6 @@ ALTER TABLE ONLY public.field_material
 
 
 --
--- Name: field field_room_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.field
@@ -1569,7 +1362,6 @@ ALTER TABLE ONLY public.field
 
 
 --
--- Name: zagvar field_type_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.zagvar
@@ -1577,7 +1369,6 @@ ALTER TABLE ONLY public.zagvar
 
 
 --
--- Name: floor floor_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.floor
@@ -1585,7 +1376,6 @@ ALTER TABLE ONLY public.floor
 
 
 --
--- Name: hemjee hemjee_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.hemjee
@@ -1593,7 +1383,6 @@ ALTER TABLE ONLY public.hemjee
 
 
 --
--- Name: user_type ingredients_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.user_type
@@ -1601,7 +1390,6 @@ ALTER TABLE ONLY public.user_type
 
 
 --
--- Name: irts irts_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.irts
@@ -1609,7 +1397,6 @@ ALTER TABLE ONLY public.irts
 
 
 --
--- Name: irts_tuluv irts_tuluv_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.irts_tuluv
@@ -1617,7 +1404,6 @@ ALTER TABLE ONLY public.irts_tuluv
 
 
 --
--- Name: material material_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.material
@@ -1625,7 +1411,6 @@ ALTER TABLE ONLY public.material
 
 
 --
--- Name: material_type material_type_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.material_type
@@ -1633,7 +1418,6 @@ ALTER TABLE ONLY public.material_type
 
 
 --
--- Name: aguulah material_ware_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.aguulah
@@ -1641,7 +1425,6 @@ ALTER TABLE ONLY public.aguulah
 
 
 --
--- Name: nyagtlan_material nyagtlan_material_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.nyagtlan_material
@@ -1649,7 +1432,6 @@ ALTER TABLE ONLY public.nyagtlan_material
 
 
 --
--- Name: work_type process_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.work_type
@@ -1657,7 +1439,6 @@ ALTER TABLE ONLY public.work_type
 
 
 --
--- Name: project project_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.project
@@ -1665,7 +1446,6 @@ ALTER TABLE ONLY public.project
 
 
 --
--- Name: request_replies request_replies_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.request_replies
@@ -1673,7 +1453,6 @@ ALTER TABLE ONLY public.request_replies
 
 
 --
--- Name: requests requests_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.requests
@@ -1681,7 +1460,6 @@ ALTER TABLE ONLY public.requests
 
 
 --
--- Name: unit room_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.unit
@@ -1689,7 +1467,6 @@ ALTER TABLE ONLY public.unit
 
 
 --
--- Name: field_work room_work_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.field_work
@@ -1697,7 +1474,6 @@ ALTER TABLE ONLY public.field_work
 
 
 --
--- Name: process_work tools_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.process_work
@@ -1705,7 +1481,6 @@ ALTER TABLE ONLY public.process_work
 
 
 --
--- Name: process_material work_material_add_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.process_material
@@ -1713,7 +1488,6 @@ ALTER TABLE ONLY public.process_material
 
 
 --
--- Name: process_img work_material_tool_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.process_img
@@ -1721,7 +1495,6 @@ ALTER TABLE ONLY public.process_img
 
 
 --
--- Name: work work_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.work
@@ -1729,7 +1502,6 @@ ALTER TABLE ONLY public.work
 
 
 --
--- Name: worker worker_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.worker
@@ -1737,7 +1509,6 @@ ALTER TABLE ONLY public.worker
 
 
 --
--- Name: zagvar_field zagvar_field_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.zagvar_field
@@ -1745,7 +1516,6 @@ ALTER TABLE ONLY public.zagvar_field
 
 
 --
--- Name: zagvar_turul zagvar_turul_pkey; Type: CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.zagvar_turul
@@ -1753,7 +1523,6 @@ ALTER TABLE ONLY public.zagvar_turul
 
 
 --
--- Name: process_work admin_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.process_work
@@ -1761,7 +1530,6 @@ ALTER TABLE ONLY public.process_work
 
 
 --
--- Name: buy_place aguulah_place_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.buy_place
@@ -1769,7 +1537,6 @@ ALTER TABLE ONLY public.buy_place
 
 
 --
--- Name: unit block_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.unit
@@ -1777,7 +1544,6 @@ ALTER TABLE ONLY public.unit
 
 
 --
--- Name: aguulah buy_place_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.aguulah
@@ -1785,7 +1551,6 @@ ALTER TABLE ONLY public.aguulah
 
 
 --
--- Name: work constraint_name; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.work
@@ -1793,7 +1558,6 @@ ALTER TABLE ONLY public.work
 
 
 --
--- Name: zagvar_field field_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.zagvar_field
@@ -1801,7 +1565,6 @@ ALTER TABLE ONLY public.zagvar_field
 
 
 --
--- Name: field_work field_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.field_work
@@ -1809,7 +1572,6 @@ ALTER TABLE ONLY public.field_work
 
 
 --
--- Name: field_material field_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.field_material
@@ -1817,7 +1579,6 @@ ALTER TABLE ONLY public.field_material
 
 
 --
--- Name: process_work field_work_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.process_work
@@ -1825,7 +1586,6 @@ ALTER TABLE ONLY public.process_work
 
 
 --
--- Name: request_users fk_request; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.request_users
@@ -1833,7 +1593,6 @@ ALTER TABLE ONLY public.request_users
 
 
 --
--- Name: request_replies fk_request; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.request_replies
@@ -1841,7 +1600,6 @@ ALTER TABLE ONLY public.request_replies
 
 
 --
--- Name: request_users fk_user; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.request_users
@@ -1849,7 +1607,6 @@ ALTER TABLE ONLY public.request_users
 
 
 --
--- Name: unit floor_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.unit
@@ -1857,7 +1614,6 @@ ALTER TABLE ONLY public.unit
 
 
 --
--- Name: field_work hemjee_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.field_work
@@ -1865,7 +1621,6 @@ ALTER TABLE ONLY public.field_work
 
 
 --
--- Name: process_work manager_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.process_work
@@ -1873,7 +1628,6 @@ ALTER TABLE ONLY public.process_work
 
 
 --
--- Name: worker manager_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.worker
@@ -1881,7 +1635,6 @@ ALTER TABLE ONLY public.worker
 
 
 --
--- Name: field_material material_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.field_material
@@ -1889,7 +1642,6 @@ ALTER TABLE ONLY public.field_material
 
 
 --
--- Name: process_material material_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.process_material
@@ -1897,7 +1649,6 @@ ALTER TABLE ONLY public.process_material
 
 
 --
--- Name: nyagtlan_material material_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.nyagtlan_material
@@ -1905,7 +1656,6 @@ ALTER TABLE ONLY public.nyagtlan_material
 
 
 --
--- Name: aguulah material_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.aguulah
@@ -1913,7 +1663,6 @@ ALTER TABLE ONLY public.aguulah
 
 
 --
--- Name: material material_type; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.material
@@ -1921,7 +1670,6 @@ ALTER TABLE ONLY public.material
 
 
 --
--- Name: material material_unit_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.material
@@ -1929,7 +1677,6 @@ ALTER TABLE ONLY public.material
 
 
 --
--- Name: process_img process_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.process_img
@@ -1937,7 +1684,6 @@ ALTER TABLE ONLY public.process_img
 
 
 --
--- Name: process_material process_work_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.process_material
@@ -1945,7 +1691,6 @@ ALTER TABLE ONLY public.process_material
 
 
 --
--- Name: nyagtlan_material process_work_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.nyagtlan_material
@@ -1953,7 +1698,6 @@ ALTER TABLE ONLY public.nyagtlan_material
 
 
 --
--- Name: unit project_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.unit
@@ -1961,7 +1705,6 @@ ALTER TABLE ONLY public.unit
 
 
 --
--- Name: users project_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.users
@@ -1969,7 +1712,6 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: aguulah project_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.aguulah
@@ -1977,7 +1719,6 @@ ALTER TABLE ONLY public.aguulah
 
 
 --
--- Name: irts tuluv_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.irts
@@ -1985,7 +1726,6 @@ ALTER TABLE ONLY public.irts
 
 
 --
--- Name: worker tuluv_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.worker
@@ -1993,7 +1733,6 @@ ALTER TABLE ONLY public.worker
 
 
 --
--- Name: users type_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.users
@@ -2001,7 +1740,6 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: process_work unit_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.process_work
@@ -2009,7 +1747,6 @@ ALTER TABLE ONLY public.process_work
 
 
 --
--- Name: nyagtlan_material users_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.nyagtlan_material
@@ -2017,7 +1754,6 @@ ALTER TABLE ONLY public.nyagtlan_material
 
 
 --
--- Name: aguulah users_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.aguulah
@@ -2025,7 +1761,6 @@ ALTER TABLE ONLY public.aguulah
 
 
 --
--- Name: field_work work_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.field_work
@@ -2033,7 +1768,6 @@ ALTER TABLE ONLY public.field_work
 
 
 --
--- Name: field_material work_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.field_material
@@ -2041,7 +1775,6 @@ ALTER TABLE ONLY public.field_material
 
 
 --
--- Name: irts worker_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.irts
@@ -2049,7 +1782,6 @@ ALTER TABLE ONLY public.irts
 
 
 --
--- Name: unit zagvar_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.unit
@@ -2057,7 +1789,6 @@ ALTER TABLE ONLY public.unit
 
 
 --
--- Name: zagvar_field zagvar_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.zagvar_field
@@ -2065,7 +1796,6 @@ ALTER TABLE ONLY public.zagvar_field
 
 
 --
--- Name: field_work zagvar_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.field_work
@@ -2073,7 +1803,6 @@ ALTER TABLE ONLY public.field_work
 
 
 --
--- Name: field_material zagvar_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.field_material
@@ -2081,7 +1810,6 @@ ALTER TABLE ONLY public.field_material
 
 
 --
--- Name: zagvar zagvar_turul_constraint; Type: FK CONSTRAINT; Schema: public; Owner: node_user
 --
 
 ALTER TABLE ONLY public.zagvar

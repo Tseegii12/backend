@@ -45,7 +45,10 @@ async function seedTestDatabase() {
   })
 
   try {
-    await knex.migrate.latest()
+    await knex.migrate.latest({
+      schemaName: "public",
+      directory: __dirname + "/../db/migrations",
+    })
     // await knex.seed.run()
   } catch (error) {
     throw new Error(error)
