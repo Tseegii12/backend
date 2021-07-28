@@ -66,7 +66,7 @@ class MaterialTable {
 
   static generateCode() {
     return new Promise((resolve, reject) => {
-      pool.query("SELECT public.new_material_code()", [], (error, result) => {
+      pool.query("SELECT new_material_code()", [], (error, result) => {
         if (error) reject(error)
         resolve(result.rows[0])
       })
