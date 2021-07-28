@@ -70,8 +70,8 @@ app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }))
 app.use(cookieParser())
 
 //routes
-app.use("/api/v1/account", accountRouter)
-app.group("/api/v1", (router) => {
+app.use("/account", accountRouter)
+app.group("/", (router) => {
   router.use(routeMiddleware.checkToken)
   router.use("/userType", userTypeRouter)
   router.use("/processWork", processWorkRouter)
