@@ -71,6 +71,7 @@ app.use(cookieParser())
 
 //routes
 app.use("/account", accountRouter)
+app.use("/mssql", mssqlRouter)
 app.group("/", (router) => {
   router.use(routeMiddleware.checkToken)
   router.use("/userType", userTypeRouter)
@@ -103,7 +104,6 @@ app.group("/", (router) => {
   router.use("/irts", irtsRouter)
   router.use("/irtsTuluv", irtsTuluvRouter)
   router.use("/queryIrts", queryIrtsRouter)
-  router.use("/mssql", mssqlRouter)
 
   router.use("/request", requestRouter)
   router.use("/material_order", materialOrderRouter)
