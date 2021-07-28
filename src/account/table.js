@@ -28,7 +28,7 @@ class customerTable {
   static getUserByName({ user_name }) {
     return new Promise((resolve, reject) => {
       pool.query(
-        `SELECT * FROM users WHERE user_name = $1`,
+        `SELECT users.id, users.name, users.password, users.user_name, users.type_id, json_agg(json_build_object('id', user_type.id, 'title', user_type.title)) as role FROM users INNER join user_type on users.type_id = user_type.id where lower(users.user_name) = lower($1) group by users.id`,
         [user_name],
         (error, response) => {
           if (error) return reject(error)

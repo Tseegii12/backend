@@ -1,4 +1,5 @@
 const express = require("express")
+require("express-group-routes")
 const cors = require("cors")
 const cookieParser = require("cookie-parser")
 const path = require("path")
@@ -38,7 +39,10 @@ const irtsTuluvRouter = require("./api/irts_tuluv")
 const queryIrtsRouter = require("./api/queryIrts")
 const mssqlRouter = require("./api/mssql")
 
-const requestRoute = require("./api/request")
+const requestRouter = require("./api/request")
+const materialOrderRouter = require("./api/material_order")
+
+const routeMiddleware = require("./middlewares/route-middleware")
 
 const app = express()
 
@@ -65,54 +69,45 @@ app.use(bodyParser.json({ limit: "50mb" }))
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }))
 app.use(cookieParser())
 
-const checkToken = (req, res, next) => {
-  const header = req.headers["authorization"]
-
-  if (typeof header !== "undefined") {
-    const bearer = header.split(" ")
-    const token = bearer[1]
-
-    req.token = token
-    next()
-  } else {
-    res.status(403).json({ message: "Хандах эрхгүй байна" })
-  }
-}
-
 //routes
-app.use("/account", accountRouter)
-app.use("/userType", userTypeRouter)
-app.use("/processWork", processWorkRouter)
-app.use("/work", workRouter)
-app.use("/block", blockRouter)
-app.use("/field", fieldRouter)
-app.use("/material", materialRouter)
-app.use("/aguulah", aguulahRouter)
-app.use("/fieldWork", fieldWorkRouter)
-app.use("/tailan", tailanRouter)
-app.use("/users", usersRouter)
-app.use("/project", projectRouter)
-app.use("/processMaterial", processMaterialRouter)
-app.use("/zagvar", zagvarRouter)
-app.use("/floor", floorRouter)
-app.use("/processImg", processImgRouter)
-app.use("/fieldMaterial", fieldMaterialRouter)
-app.use("/workAttendance", workAttendanceRouter)
-app.use("/workType", workTypeRouter)
-app.use("/aguulahPlace", aguulahPlaceRouter)
-app.use("/materialType", materialTypeRouter)
-app.use("/unit", unitRouter)
-app.use("/hemjee", hemjeeRouter)
-app.use("/zagvarTurul", zagvarTurulRouter)
-app.use("/zagvarField", zagvarFieldRouter)
-app.use("/nyagtlanMaterial", nyagtlanMaterialRouter)
-app.use("/buyPlace", buyPlaceRouter)
-app.use("/worker", workerRouter)
-app.use("/irts", irtsRouter)
-app.use("/irtsTuluv", irtsTuluvRouter)
-app.use("/queryIrts", queryIrtsRouter)
-app.use("/mssql", mssqlRouter)
-app.use("/request", checkToken, requestRoute)
+app.use("/api/v1/account", accountRouter)
+app.group("/api/v1", (router) => {
+  router.use(routeMiddleware.checkToken)
+  router.use("/userType", userTypeRouter)
+  router.use("/processWork", processWorkRouter)
+  router.use("/work", workRouter)
+  router.use("/block", blockRouter)
+  router.use("/field", fieldRouter)
+  router.use("/material", materialRouter)
+  router.use("/aguulah", aguulahRouter)
+  router.use("/fieldWork", fieldWorkRouter)
+  router.use("/tailan", tailanRouter)
+  router.use("/users", usersRouter)
+  router.use("/project", projectRouter)
+  router.use("/processMaterial", processMaterialRouter)
+  router.use("/zagvar", zagvarRouter)
+  router.use("/floor", floorRouter)
+  router.use("/processImg", processImgRouter)
+  router.use("/fieldMaterial", fieldMaterialRouter)
+  router.use("/workAttendance", workAttendanceRouter)
+  router.use("/workType", workTypeRouter)
+  router.use("/aguulahPlace", aguulahPlaceRouter)
+  router.use("/materialType", materialTypeRouter)
+  router.use("/unit", unitRouter)
+  router.use("/hemjee", hemjeeRouter)
+  router.use("/zagvarTurul", zagvarTurulRouter)
+  router.use("/zagvarField", zagvarFieldRouter)
+  router.use("/nyagtlanMaterial", nyagtlanMaterialRouter)
+  router.use("/buyPlace", buyPlaceRouter)
+  router.use("/worker", workerRouter)
+  router.use("/irts", irtsRouter)
+  router.use("/irtsTuluv", irtsTuluvRouter)
+  router.use("/queryIrts", queryIrtsRouter)
+  router.use("/mssql", mssqlRouter)
+
+  router.use("/request", requestRouter)
+  router.use("/material_order", materialOrderRouter)
+})
 
 app.get("*", function (req, res) {
   res.status(404).json({ success: false, message: "404 route not found" })
