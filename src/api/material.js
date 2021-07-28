@@ -57,6 +57,7 @@ router.get("/newCode", (req, res,next) => {
     MaterialTable.generateCode()
         .then((result) => {
             res.status(201).json(result)
+            
         }).catch((error) => next(error))
 });
 
