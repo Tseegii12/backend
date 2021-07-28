@@ -56,7 +56,7 @@ router.get("/getAllForPicker", (req, res, next) => {
 router.get("/newCode", (req, res,next) => {
     MaterialTable.generateCode()
         .then((result) => {
-            res.status(201).json(result[0])
+            res.status(201).json(result)
         }).catch((error) => next(error))
 });
 
