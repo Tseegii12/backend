@@ -51,7 +51,30 @@ const updateMaterialOrder = (req, res, next) => {
     })
 }
 
+const checkRoleTitle = (req, res, next) => {
+    const validationRule = {
+        "role_title": "required|string"
+    };
+
+    validator(req.body, validationRule, {
+        required: ':attribute шаардлагатай',
+        string: ':attribute текст байх ёстой'
+    }, (err, status) => {
+        if (!status) {
+            res.status(422)
+                .json({
+                    success: false,
+                    message: "Validation failed",
+                    data: err
+                })
+        } else {
+            next();
+        }
+    })
+};
+
 module.exports = {
     createMaterialOrder,
-    updateMaterialOrder
+    updateMaterialOrder,
+    checkRoleTitle
 }
