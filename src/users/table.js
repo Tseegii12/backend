@@ -42,6 +42,16 @@ class UsersTable {
       )
     })
   }
+
+  static getUserByRole(roleTitle) {
+    return new Promise((resolve, reject) => {
+      pool.query(`SELECT users.id, users.name FROM users INNER JOIN user_type ON users.type_id = user_type.id WHERE user_type.title = $1`, [roleTitle], (error, result) => {
+        if (error) return reject(error);
+
+        resolve(result.rows)
+      })
+    })
+  }
 }
 
 module.exports = UsersTable

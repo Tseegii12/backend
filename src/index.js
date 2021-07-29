@@ -50,78 +50,78 @@ console.log("PATH: ", path.join(__dirname, "../../"))
 app.use(express.static(path.join(__dirname, "../../assets")))
 
 app.use(
-  cors({
-    origin: "*",
-    credentials: true,
-  })
+    cors({
+        origin: "*",
+        credentials: true,
+    })
 )
 
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*")
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  )
-  next()
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept"
+    )
+    next()
 })
 
-app.use(bodyParser.json({ limit: "50mb" }))
-app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }))
+app.use(bodyParser.json({limit: "50mb"}))
+app.use(bodyParser.urlencoded({limit: "50mb", extended: true}))
 app.use(cookieParser())
 
 //routes
 app.use("/account", accountRouter)
 app.use("/mssql", mssqlRouter)
 app.group("/", (router) => {
-  router.use(routeMiddleware.checkToken)
-  router.use("/userType", userTypeRouter)
-  router.use("/processWork", processWorkRouter)
-  router.use("/work", workRouter)
-  router.use("/block", blockRouter)
-  router.use("/field", fieldRouter)
-  router.use("/material", materialRouter)
-  router.use("/aguulah", aguulahRouter)
-  router.use("/fieldWork", fieldWorkRouter)
-  router.use("/tailan", tailanRouter)
-  router.use("/users", usersRouter)
-  router.use("/project", projectRouter)
-  router.use("/processMaterial", processMaterialRouter)
-  router.use("/zagvar", zagvarRouter)
-  router.use("/floor", floorRouter)
-  router.use("/processImg", processImgRouter)
-  router.use("/fieldMaterial", fieldMaterialRouter)
-  router.use("/workAttendance", workAttendanceRouter)
-  router.use("/workType", workTypeRouter)
-  router.use("/aguulahPlace", aguulahPlaceRouter)
-  router.use("/materialType", materialTypeRouter)
-  router.use("/unit", unitRouter)
-  router.use("/hemjee", hemjeeRouter)
-  router.use("/zagvarTurul", zagvarTurulRouter)
-  router.use("/zagvarField", zagvarFieldRouter)
-  router.use("/nyagtlanMaterial", nyagtlanMaterialRouter)
-  router.use("/buyPlace", buyPlaceRouter)
-  router.use("/worker", workerRouter)
-  router.use("/irts", irtsRouter)
-  router.use("/irtsTuluv", irtsTuluvRouter)
-  router.use("/queryIrts", queryIrtsRouter)
+    router.use(routeMiddleware.checkToken)
+    router.use("/userType", userTypeRouter)
+    router.use("/processWork", processWorkRouter)
+    router.use("/work", workRouter)
+    router.use("/block", blockRouter)
+    router.use("/field", fieldRouter)
+    router.use("/material", materialRouter)
+    router.use("/aguulah", aguulahRouter)
+    router.use("/fieldWork", fieldWorkRouter)
+    router.use("/tailan", tailanRouter)
+    router.use("/users", usersRouter)
+    router.use("/project", projectRouter)
+    router.use("/processMaterial", processMaterialRouter)
+    router.use("/zagvar", zagvarRouter)
+    router.use("/floor", floorRouter)
+    router.use("/processImg", processImgRouter)
+    router.use("/fieldMaterial", fieldMaterialRouter)
+    router.use("/workAttendance", workAttendanceRouter)
+    router.use("/workType", workTypeRouter)
+    router.use("/aguulahPlace", aguulahPlaceRouter)
+    router.use("/materialType", materialTypeRouter)
+    router.use("/unit", unitRouter)
+    router.use("/hemjee", hemjeeRouter)
+    router.use("/zagvarTurul", zagvarTurulRouter)
+    router.use("/zagvarField", zagvarFieldRouter)
+    router.use("/nyagtlanMaterial", nyagtlanMaterialRouter)
+    router.use("/buyPlace", buyPlaceRouter)
+    router.use("/worker", workerRouter)
+    router.use("/irts", irtsRouter)
+    router.use("/irtsTuluv", irtsTuluvRouter)
+    router.use("/queryIrts", queryIrtsRouter)
 
-  router.use("/request", requestRouter)
-  router.use("/material_order", materialOrderRouter)
+    router.use("/request", requestRouter)
+    router.use("/material_order", materialOrderRouter)
 })
 
 app.get("*", function (req, res) {
-  res.status(404).json({ success: false, message: "404 route not found" })
+    res.status(404).json({success: false, message: "404 route not found"})
 })
 
 app.use((err, req, res, next) => {
-  const statusCode = err.statusCode || 500
+    const statusCode = err.statusCode || 500
 
-  console.error("logging error", err)
+    console.error("logging error", err)
 
-  res.status(statusCode).json({
-    type: "error",
-    message: err.message,
-  })
+    res.status(statusCode).json({
+        type: "error",
+        message: err.message,
+    })
 })
 
 module.exports = app
